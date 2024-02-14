@@ -1,0 +1,3 @@
+C:/Users/leila/qidk/Tools/snpe-docker/NLPSolution1-QuestionAnswering/QuestionAnswering/bert/.cxx/Debug/4e4bv4o5/arm64-v8a/CMakeFiles/qa.dir
+C:/Users/leila/qidk/Tools/snpe-docker/NLPSolution1-QuestionAnswering/QuestionAnswering/bert/.cxx/Debug/4e4bv4o5/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/leila/qidk/Tools/snpe-docker/NLPSolution1-QuestionAnswering/QuestionAnswering/bert/.cxx/Debug/4e4bv4o5/arm64-v8a/CMakeFiles/rebuild_cache.dir

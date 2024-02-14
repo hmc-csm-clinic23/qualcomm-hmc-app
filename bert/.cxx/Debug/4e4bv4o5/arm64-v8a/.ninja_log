@@ -1,0 +1,5 @@
+# ninja log v5
+1	1399	728473094	CMakeFiles/qa.dir/native-lib.cpp.o	407019ef61204888
+12	1562	728473095	CMakeFiles/qa.dir/inference.cpp.o	6a43b68e1a44f768
+8	1760	728473095	CMakeFiles/qa.dir/inference_helper.cpp.o	2f728952e41d71ea
+6	365	728474730	C:/Users/leila/qidk/Tools/snpe-docker/NLPSolution1-QuestionAnswering/QuestionAnswering/bert/build/intermediates/cxx/Debug/4e4bv4o5/obj/arm64-v8a/libqa.so	c8cf6049546d58b4

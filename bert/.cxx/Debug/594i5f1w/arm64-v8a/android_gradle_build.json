@@ -1,0 +1,40 @@
+{
+  "stringTable": {},
+  "buildFiles": [
+    "D:\\Harvey_Mudd\\Qualcomm\\QuestionAnswering\\QuestionAnswering\\bert\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "D:\\Users\\tanvi.MSI\\AppData\\Local\\Andriod\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe",
+      "-C",
+      "D:\\Harvey_Mudd\\Qualcomm\\QuestionAnswering\\QuestionAnswering\\bert\\.cxx\\Debug\\594i5f1w\\arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "D:\\Users\\tanvi.MSI\\AppData\\Local\\Andriod\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe",
+    "-C",
+    "D:\\Harvey_Mudd\\Qualcomm\\QuestionAnswering\\QuestionAnswering\\bert\\.cxx\\Debug\\594i5f1w\\arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "qa-Debug-arm64-v8a": {
+      "buildCommandComponents": [
+        "D:\\Users\\tanvi.MSI\\AppData\\Local\\Andriod\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe",
+        "-C",
+        "D:\\Harvey_Mudd\\Qualcomm\\QuestionAnswering\\QuestionAnswering\\bert\\.cxx\\Debug\\594i5f1w\\arm64-v8a",
+        "qa"
+      ],
+      "buildType": "debug",
+      "abi": "arm64-v8a",
+      "artifactName": "qa",
+      "output": "D:\\Harvey_Mudd\\Qualcomm\\QuestionAnswering\\QuestionAnswering\\bert\\build\\intermediates\\cxx\\Debug\\594i5f1w\\obj\\arm64-v8a\\libqa.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {},
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "stringTable": {},
+  "buildFiles": [
+    "C:\\Users\\leila\\qidk\\Tools\\snpe-docker\\NLPSolution1-QuestionAnswering\\QuestionAnswering\\bert\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\leila\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe",
+      "-C",
+      "C:\\Users\\leila\\qidk\\Tools\\snpe-docker\\NLPSolution1-QuestionAnswering\\QuestionAnswering\\bert\\.cxx\\Debug\\4e4bv4o5\\arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\leila\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe",
+    "-C",
+    "C:\\Users\\leila\\qidk\\Tools\\snpe-docker\\NLPSolution1-QuestionAnswering\\QuestionAnswering\\bert\\.cxx\\Debug\\4e4bv4o5\\arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "qa-Debug-arm64-v8a": {
+      "buildCommandComponents": [
+        "C:\\Users\\leila\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe",
+        "-C",
+        "C:\\Users\\leila\\qidk\\Tools\\snpe-docker\\NLPSolution1-QuestionAnswering\\QuestionAnswering\\bert\\.cxx\\Debug\\4e4bv4o5\\arm64-v8a",
+        "qa"
+      ],
+      "buildType": "debug",
+      "abi": "arm64-v8a",
+      "artifactName": "qa",
+      "output": "C:\\Users\\leila\\qidk\\Tools\\snpe-docker\\NLPSolution1-QuestionAnswering\\QuestionAnswering\\bert\\build\\intermediates\\cxx\\Debug\\4e4bv4o5\\obj\\arm64-v8a\\libqa.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {},
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

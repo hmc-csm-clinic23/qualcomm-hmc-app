@@ -1,0 +1,2 @@
+ninja: Entering directory `C:\Users\leila\qidk\Tools\snpe-docker\NLPSolution1-QuestionAnswering\QuestionAnswering\bert\.cxx\Debug\4e4bv4o5\arm64-v8a'
+ninja: no work to do.

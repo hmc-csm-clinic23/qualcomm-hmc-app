@@ -1,0 +1,2 @@
+ninja: Entering directory `D:\Harvey_Mudd\Qualcomm\QuestionAnswering\QuestionAnswering\bert\.cxx\Debug\594i5f1w\arm64-v8a'
+ninja: no work to do.
