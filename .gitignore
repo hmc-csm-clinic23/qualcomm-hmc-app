@@ -1,5 +1,9 @@
 **/.DS_Store
 
+# Qualcomm Specific files
+*.so
+*.aar
+
 # Built application files
 *.apk
 *.ap_
