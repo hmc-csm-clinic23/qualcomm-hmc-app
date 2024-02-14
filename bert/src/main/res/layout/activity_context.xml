@@ -8,24 +8,24 @@
     <EditText
         android:id="@+id/contextText"
         android:layout_width="281dp"
-        android:layout_height="128dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="100dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Context"
+        android:hint="Context"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/questionText"
         android:layout_width="274dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="90dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Question"
+        android:hint="Question"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contextText" />
 
@@ -38,4 +38,15 @@
         android:text="Submit Question"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/questionText" />
+
+    <TextView
+        android:id="@+id/answerView"
+        android:layout_width="275dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="40dp"
+        android:text="Answer:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

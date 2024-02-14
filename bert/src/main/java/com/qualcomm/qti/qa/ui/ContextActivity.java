@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,8 @@ public class ContextActivity extends AppCompatActivity {
     EditText contextText;
     EditText questionText;
 
+    TextView answerText;
+
     private boolean questionAnswered = false;
     private Handler handler;
     private QaClient qaClient;
@@ -39,6 +42,7 @@ public class ContextActivity extends AppCompatActivity {
         button = (Button)findViewById(R.id.questionButton);
         contextText = (EditText)findViewById(R.id.contextText);
         questionText = (EditText)findViewById(R.id.questionText);
+        answerText = (TextView)findViewById(R.id.answerView);
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -85,7 +89,7 @@ public class ContextActivity extends AppCompatActivity {
 //                                textToSpeech = null;
 //                            }
 //                        });
-        Toast.makeText(ContextActivity.this, "initialized", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(ContextActivity.this, "initialized", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -114,6 +118,7 @@ public class ContextActivity extends AppCompatActivity {
             question += '?';
         }
         final String questionToAsk = question;
+        answerText.setText("Finding the Answer!");
 //        questionEditText.setText(questionToAsk);
 
         // Delete all pending tasks.
@@ -158,7 +163,8 @@ public class ContextActivity extends AppCompatActivity {
 
                         // Get the top answer
                         QaAnswer topAnswer = answers.get(0);
-                        Toast.makeText(ContextActivity.this, topAnswer.text, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(ContextActivity.this, topAnswer.text, Toast.LENGTH_SHORT).show();
+                        answerText.setText(topAnswer.text);
 
                         // Show the answer.
 //                        runOnUiThread(
