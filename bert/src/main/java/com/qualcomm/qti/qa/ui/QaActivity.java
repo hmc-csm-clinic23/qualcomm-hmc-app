@@ -114,7 +114,7 @@ public class QaActivity extends AppCompatActivity {
     LoadDatasetClient datasetClient = new LoadDatasetClient(this);
 
     // Show the dataset title.
-    TextView titleText = findViewById(R.id.title_text);
+    TextView     titleText = findViewById(R.id.title_text);
     titleText.setText(datasetClient.getTitles()[datasetPosition]);
 
     // Show the text content of the selected dataset.
