@@ -149,6 +149,9 @@
     ],
     [
       "Force"
+    ],
+    [
+      "TempFile"
     ]
   ],
   "contents": [
@@ -301,6 +304,9 @@
     ],
     [
       "Philosophers in antiquity used the concept of force in the study of stationary and moving objects and simple machines, but thinkers such as Aristotle and Archimedes retained fundamental errors in understanding force. In part this was due to an incomplete understanding of the sometimes non-obvious force of friction, and a consequently inadequate view of the nature of natural motion. A fundamental error was the belief that a force is required to maintain motion, even at a constant velocity. Most of the previous misunderstandings about motion and force were eventually corrected by Galileo Galilei and Sir Isaac Newton. With his mathematical insight, Sir Isaac Newton formulated laws of motion that were not improved-on for nearly three hundred years. By the early 20th century, Einstein developed a theory of relativity that correctly predicted the action of forces on objects with increasing momenta near the speed of light, and also provided insight into the forces produced by gravitation and inertia."
+    ],
+    [
+      "Chocolate is derived from the cacao bean, which is native to Central and South America.\nThe history of chocolate dates back over 3,000 years to ancient Mesoamerican civilizations like the Maya and Aztecs.\nThe word \"chocolate\" comes from the Aztec word \"xocolātl,\" which means \"bitter water.\"\nChocolate is enjoyed in various forms, including bars, truffles, hot cocoa, and cakes.\nDark chocolate contains high levels of antioxidants, which may have health benefits.\nMilk chocolate is made by adding milk powder or condensed milk to the chocolate mixture.\nWhite chocolate doesn't contain cocoa solids but is made from cocoa butter, sugar, and milk solids.\nBelgium and Switzerland are renowned for their high-quality chocolate production.\nChocolate is often associated with celebrations and gifts, particularly on holidays like Valentine's Day and Easter.\nThe chocolate industry is a multi-billion dollar global market.\nCocoa beans are harvested from cacao trees, which thrive in tropical climates.\nThe process of making chocolate involves fermenting, drying, roasting, grinding, and conching the cocoa beans.\nCocoa solids and cocoa butter are the main components of chocolate.\nChocolate is known for its mood-enhancing properties due to the presence of compounds like theobromine and phenylethylamine.\nSwitzerland's Toblerone and Belgium's Godiva are famous chocolate brands known worldwide.\nChocolate has a melting point slightly below body temperature, which gives it a smooth, velvety texture when consumed.\nCocoa powder, a common ingredient in baking, is made by removing cocoa butter from ground cocoa beans.\nChocolate has been the subject of numerous studies exploring its potential health benefits, including its effects on heart health and cognitive function.\nChocolate is often used as a flavoring agent in a wide range of products, from ice cream to savory dishes.\nThe demand for ethically sourced and sustainable chocolate has grown in recent years, leading to certifications like Fair Trade and Rainforest Alliance."
     ]
   ],
   "questions": [
@@ -741,6 +747,9 @@
       "Who had mathmatical insite?",
       "How long did it take to improve on Sir Isaac Newton's laws of motion?",
       "Who develped the theory of relativity?"
+    ],
+    [
+      "Why is chocolate so cool?"
     ]
   ]
 }
