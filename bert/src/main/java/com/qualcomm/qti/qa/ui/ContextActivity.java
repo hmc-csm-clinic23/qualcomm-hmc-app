@@ -147,36 +147,41 @@ public class ContextActivity extends AppCompatActivity {
                     long beforeTime = System.currentTimeMillis();
                     final List<QaAnswer> answers = qaClient.predict(questionToAsk, context, runtime, execStatus);
 
-                    Toast.makeText(ContextActivity.this, "got here 2", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(ContextActivity.this, "got here 2", Toast.LENGTH_SHORT).show();
 
                     long afterTime = System.currentTimeMillis();
                     double totalSeconds = (afterTime - beforeTime) / 1000.0;
 
                     if (!answers.isEmpty()) {
 
-                        Toast.makeText(ContextActivity.this, "got here 3", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(ContextActivity.this, "got here 3", Toast.LENGTH_SHORT).show();
 
                         // Get the top answer
                         QaAnswer topAnswer = answers.get(0);
+                        Toast.makeText(ContextActivity.this, topAnswer.text, Toast.LENGTH_SHORT).show();
+
                         // Show the answer.
-                        runOnUiThread(
-                                () -> {
-//                                    runningSnackbar.dismiss();
-//                                    presentAnswer(topAnswer.text);
-                                    Toast.makeText(ContextActivity.this, topAnswer.text, Toast.LENGTH_SHORT).show();
+//                        runOnUiThread(
+//                                () -> {
+////                                    runningSnackbar.dismiss();
+////                                    presentAnswer(topAnswer.text);
+//                                    Toast.makeText(ContextActivity.this, topAnswer.text, Toast.LENGTH_SHORT).show();
+//
+//
+////                                    String displayMessage = runtime + " runtime took : ";
+////                                    if (DISPLAY_RUNNING_TIME) {
+////                                        displayMessage = String.format("%s %.3f sec.", displayMessage, totalSeconds);
+////                                    }
+////                                    if (! execStatus.toString().isEmpty())
+////                                        Snackbar.make(contentTextView, execStatus.toString(), Snackbar.LENGTH_LONG).show();
+////                                    else
+////                                        Snackbar.make(contentTextView, displayMessage, Snackbar.LENGTH_LONG).show();
+//
+//                                    questionAnswered = true;
+//                                });
+                    }else {
+                        Toast.makeText(ContextActivity.this, "Failed to get an answer", Toast.LENGTH_SHORT).show();
 
-
-//                                    String displayMessage = runtime + " runtime took : ";
-//                                    if (DISPLAY_RUNNING_TIME) {
-//                                        displayMessage = String.format("%s %.3f sec.", displayMessage, totalSeconds);
-//                                    }
-//                                    if (! execStatus.toString().isEmpty())
-//                                        Snackbar.make(contentTextView, execStatus.toString(), Snackbar.LENGTH_LONG).show();
-//                                    else
-//                                        Snackbar.make(contentTextView, displayMessage, Snackbar.LENGTH_LONG).show();
-
-                                    questionAnswered = true;
-                                });
                     }
                 });
     }
