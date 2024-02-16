@@ -7,11 +7,14 @@ import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,10 +26,12 @@ import com.qualcomm.qti.qa.ml.QaClient;
 import java.util.List;
 import java.util.Locale;
 
-public class ContextActivity extends AppCompatActivity {
+public class ContextActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     Button button;
     EditText contextText;
     EditText questionText;
+
+    Spinner spinnerDLC;
 
     TextView answerText;
 
@@ -34,6 +39,7 @@ public class ContextActivity extends AppCompatActivity {
     private Handler handler;
     private QaClient qaClient;
 
+    String[] DLCFiles = { "Distilbert", "Electra Small Squad2" };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +49,12 @@ public class ContextActivity extends AppCompatActivity {
         contextText = (EditText)findViewById(R.id.contextText);
         questionText = (EditText)findViewById(R.id.questionText);
         answerText = (TextView)findViewById(R.id.answerView);
+        spinnerDLC = (Spinner)findViewById(R.id.spinnerDLC);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, DLCFiles);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDLC.setAdapter(adapter);
+        spinnerDLC.setOnItemSelectedListener(this);
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -62,6 +74,15 @@ public class ContextActivity extends AppCompatActivity {
         handler = new Handler(handlerThread.getLooper());
         qaClient = new QaClient(this);
 
+    }
+
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        Toast.makeText(getApplicationContext(), "Selected DLC: "+DLCFiles[pos] ,Toast.LENGTH_SHORT).show();
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback.
     }
 
     @Override
