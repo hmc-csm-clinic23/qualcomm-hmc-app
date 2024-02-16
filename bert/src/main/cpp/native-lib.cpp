@@ -70,12 +70,14 @@ extern "C"
 JNIEXPORT jstring JNICALL
 Java_com_qualcomm_qti_qa_ml_QaClient_initSNPE(JNIEnv *env,
                                               jobject thiz,
-                                              jobject asset_manager) {
+                                              jobject asset_manager,
+                                              jstring dlc_name) {
     LOGI("Reading SNPE DLC ...");
     std::string result;
 
     AAssetManager* mgr = AAssetManager_fromJava(env, asset_manager);
-    AAsset* asset = AAssetManager_open(mgr, "electra_small_squad2_cached.dlc", AASSET_MODE_UNKNOWN);
+    AAsset* asset = AAssetManager_open(mgr, "distilbert_cached.dlc", AASSET_MODE_UNKNOWN);
+
     if (NULL == asset) {
         LOGE("Failed to load ASSET, needed to load DLC\n");
         result = "Failed to load ASSET, needed to load DLC\n";
