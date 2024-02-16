@@ -70,7 +70,9 @@ public class ContextActivity extends AppCompatActivity {
         super.onStart();
         handler.post(
                 () -> {
-                    String initLogs = qaClient.loadModel();
+                    String model = "distilbert_cached.dlc";
+                    Toast.makeText(ContextActivity.this, model, Toast.LENGTH_SHORT).show();
+                    String initLogs = qaClient.loadModel(model);
 //                    if(!initLogs.isEmpty()) {
 //                        Snackbar initSnackbar =
 //                                Snackbar.make(contentTextView, initLogs, Snackbar.LENGTH_SHORT);

@@ -100,7 +100,7 @@ public class  QaClient {
   }
 
   @WorkerThread
-  public synchronized String loadModel() {
+  public synchronized String loadModel(String dlc_model) {
     String uiLogger = "";
     try {
       // query runtimes & init SNPE
@@ -112,7 +112,7 @@ public class  QaClient {
         // init SNPE
         assetManager = context.getAssets();
         Log.i(TAG, "onCreate: Initializing SNPE ...");
-        uiLogger = initSNPE(assetManager);
+        uiLogger = initSNPE(assetManager, dlc_model);
 
         doSnpeInit = false;
       }
@@ -293,7 +293,7 @@ public class  QaClient {
    * which is packaged with this application.
    */
   public native String queryRuntimes(String nativeDirPath);
-  public native String initSNPE(AssetManager assetManager);
+  public native String initSNPE(AssetManager assetManager, String dlc_name);
   public native String inferSNPE(String runtime, float[] input_ids,
                                  float[] attn_masks, float[] seg_ids,
                                  int arraySizes,

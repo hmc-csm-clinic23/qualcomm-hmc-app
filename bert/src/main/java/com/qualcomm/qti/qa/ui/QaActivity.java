@@ -211,7 +211,7 @@ public class QaActivity extends AppCompatActivity {
     super.onStart();
     handler.post(
         () -> {
-          String initLogs = qaClient.loadModel();
+          String initLogs = qaClient.loadModel("distilbert_cached.dlc");
           if(!initLogs.isEmpty()) {
               Snackbar initSnackbar =
                       Snackbar.make(contentTextView, initLogs, Snackbar.LENGTH_SHORT);
