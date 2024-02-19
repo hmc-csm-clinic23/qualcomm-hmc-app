@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph">
+
+</navigation>
+
+<!--<navigation xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:id="@+id/nav_graph"-->
+<!--    app:startDestination="@+id/landingFragment">-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/landingFragment"-->
+<!--        android:name="com.example.testingvoicetotext.LandingFragment"-->
+<!--        android:label="landing_page"-->
+<!--        tools:layout="@layout/landing_page" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_landingFragment_to_modelSelectionFragment"-->
+<!--            app:destination="@id/modelSelectionFragment" />-->
+<!--    </fragment>-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/modelSelectionFragment"-->
+<!--        android:name="com.example.testingvoicetotext.ModelSelectionFragment"-->
+<!--        android:label="model_selection"-->
+<!--        tools:layout="@layout/model_selection" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_modelSelectionFragment_to_chatFragment"-->
+<!--            app:destination="@id/chatFragment" />-->
+<!--    </fragment>-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/chatFragment"-->
+<!--        android:name="com.example.testingvoicetotext.ChatFragment"-->
+<!--        android:label="chat_page"-->
+<!--        tools:layout="@layout/chat_page" />-->
+<!--</navigation>-->

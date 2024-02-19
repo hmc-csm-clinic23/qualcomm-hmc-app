@@ -1,0 +1,3 @@
+/home/hmc-cs/StudioProjects/QualcommQuestionAnswering/bert/.cxx/Debug/wv3v73c2/arm64-v8a/CMakeFiles/rebuild_cache.dir
+/home/hmc-cs/StudioProjects/QualcommQuestionAnswering/bert/.cxx/Debug/wv3v73c2/arm64-v8a/CMakeFiles/edit_cache.dir
+/home/hmc-cs/StudioProjects/QualcommQuestionAnswering/bert/.cxx/Debug/wv3v73c2/arm64-v8a/CMakeFiles/qa.dir

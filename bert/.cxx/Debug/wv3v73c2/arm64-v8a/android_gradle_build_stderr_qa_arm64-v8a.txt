@@ -1,0 +1,1 @@
+ninja: error: '/home/hmc-cs/StudioProjects/QualcommQuestionAnswering/bert/src/main/jniLibs/arm64-v8a/libSNPE.so', needed by '/home/hmc-cs/StudioProjects/QualcommQuestionAnswering/bert/build/intermediates/cxx/Debug/wv3v73c2/obj/arm64-v8a/libqa.so', missing and no known rule to make it
