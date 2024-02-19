@@ -39,7 +39,14 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
     private Handler handler;
     private QaClient qaClient;
 
-    String[] DLCFiles = { "Distilbert", "Electra Small Squad2" };
+    String modelUsed = "electra_small_squad2_cached.dlc";
+    int modelPos = 0;
+    String[] DLCFiles = {  "Electra Small Squad2", "Distilbert", };
+//String[] DLCFiles = { "Electra" };
+
+        String[] DLCPaths = {"electra_small_squad2_cached.dlc", "distilbert_cached.dlc"};
+//        String[] DLCPaths = {"electra_small_squad2_cached.dlc"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,12 +80,30 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
         handlerThread.start();
         handler = new Handler(handlerThread.getLooper());
         qaClient = new QaClient(this);
+        
 
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
-        Toast.makeText(getApplicationContext(), "Selected DLC: "+DLCFiles[pos] ,Toast.LENGTH_SHORT).show();
+        if(modelPos == pos) {
+            return;
+        }
+
+        modelPos = pos;
+        modelUsed = DLCPaths[pos];
+        qaClient = new QaClient(this);
+        qaClient.loadDictionary();
+
+//        qaClient.unload();
+        handler.post(
+                ()-> {
+                    String init_files = qaClient.loadModel(modelUsed);
+                    Toast.makeText(getApplicationContext(), init_files ,Toast.LENGTH_SHORT).show();
+
+                }
+        );
+        Toast.makeText(getApplicationContext(), "Selected DLC: "+modelUsed ,Toast.LENGTH_SHORT).show();
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
@@ -91,9 +116,10 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
         super.onStart();
         handler.post(
                 () -> {
-                    String model = "distilbert_cached.dlc";
-                    Toast.makeText(ContextActivity.this, model, Toast.LENGTH_SHORT).show();
-                    String initLogs = qaClient.loadModel(model);
+                    Toast.makeText(ContextActivity.this, modelUsed, Toast.LENGTH_SHORT).show();
+                    String initLogs = qaClient.loadModel(modelUsed);
+                    Toast.makeText(ContextActivity.this, initLogs, Toast.LENGTH_SHORT).show();
+
 //                    if(!initLogs.isEmpty()) {
 //                        Snackbar initSnackbar =
 //                                Snackbar.make(contentTextView, initLogs, Snackbar.LENGTH_SHORT);
@@ -141,7 +167,7 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
             question += '?';
         }
         final String questionToAsk = question;
-        answerText.setText("Finding the Answer!");
+        answerText.setText("Finding the answer with " + DLCFiles[modelPos]);
 //        questionEditText.setText(questionToAsk);
 
         // Delete all pending tasks.

@@ -76,11 +76,26 @@ Java_com_qualcomm_qti_qa_ml_QaClient_initSNPE(JNIEnv *env,
     std::string result;
 
     AAssetManager* mgr = AAssetManager_fromJava(env, asset_manager);
-    AAsset* asset = AAssetManager_open(mgr, "distilbert_cached.dlc", AASSET_MODE_UNKNOWN);
+
+    //convert string
+    const jclass stringClass = env->GetObjectClass(dlc_name);
+    const jmethodID getBytes = env->GetMethodID(stringClass, "getBytes", "(Ljava/lang/String;)[B");
+    const jbyteArray stringJbytes = (jbyteArray) env->CallObjectMethod(dlc_name, getBytes, env->NewStringUTF("UTF-8"));
+    size_t length = (size_t) env->GetArrayLength(stringJbytes);
+    jbyte* pBytes = env->GetByteArrayElements(stringJbytes, NULL);
+    std::string dlc_name_string = std::string((char *)pBytes, length);
+    //finished converting
+
+    AAsset* asset = AAssetManager_open(mgr, dlc_name_string.c_str(), AASSET_MODE_UNKNOWN);
+
+//    AAsset* asset = AAssetManager_open(mgr, "distilbert_cached.dlc", AASSET_MODE_UNKNOWN);
+//    AAsset* asset = AAssetManager_open(mgr, "electra_small_squad2_cached.dlc", AASSET_MODE_UNKNOWN);
 
     if (NULL == asset) {
         LOGE("Failed to load ASSET, needed to load DLC\n");
-        result = "Failed to load ASSET, needed to load DLC\n";
+//        result = "Failed to load ASSET, needed to load DLC\n";
+//        result = reinterpret_cast<const char *>(dlc_name);
+        result = dlc_name_string;
         return env->NewStringUTF(result.c_str());
     }
     long dlc_size = AAsset_getLength(asset);
