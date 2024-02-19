@@ -73,6 +73,7 @@ Java_com_qualcomm_qti_qa_ml_QaClient_initSNPE(JNIEnv *env,
                                               jobject asset_manager,
                                               jstring dlc_name) {
     LOGI("Reading SNPE DLC ...");
+//    return env->NewStringUTF("Hello");
     std::string result;
 
     AAssetManager* mgr = AAssetManager_fromJava(env, asset_manager);

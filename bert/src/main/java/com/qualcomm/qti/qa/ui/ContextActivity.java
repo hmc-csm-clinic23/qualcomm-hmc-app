@@ -93,16 +93,20 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
         modelPos = pos;
         modelUsed = DLCPaths[pos];
         qaClient = new QaClient(this);
+
+////        qaClient.unload();
+//        handler.post(
+//                ()-> {
+//                    String init_files = qaClient.loadModel(modelUsed);
+//                    Toast.makeText(getApplicationContext(), init_files ,Toast.LENGTH_SHORT).show();
+//
+//                }
+//        );
+        String init_files = qaClient.loadModel(modelUsed);
+        Toast.makeText(getApplicationContext(), init_files ,Toast.LENGTH_SHORT).show();
         qaClient.loadDictionary();
 
-//        qaClient.unload();
-        handler.post(
-                ()-> {
-                    String init_files = qaClient.loadModel(modelUsed);
-                    Toast.makeText(getApplicationContext(), init_files ,Toast.LENGTH_SHORT).show();
 
-                }
-        );
         Toast.makeText(getApplicationContext(), "Selected DLC: "+modelUsed ,Toast.LENGTH_SHORT).show();
     }
 
@@ -114,19 +118,30 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
     protected void onStart() {
 //        Log.v(TAG, "onStart");
         super.onStart();
-        handler.post(
-                () -> {
-                    Toast.makeText(ContextActivity.this, modelUsed, Toast.LENGTH_SHORT).show();
-                    String initLogs = qaClient.loadModel(modelUsed);
-                    Toast.makeText(ContextActivity.this, initLogs, Toast.LENGTH_SHORT).show();
+//        handler.post(
+//                () -> {
+//                    Toast.makeText(ContextActivity.this, modelUsed, Toast.LENGTH_SHORT).show();
+//                    String initLogs = qaClient.loadModel(modelUsed);
+//                    Toast.makeText(ContextActivity.this, initLogs, Toast.LENGTH_SHORT).show();
+//
+////                    if(!initLogs.isEmpty()) {
+////                        Snackbar initSnackbar =
+////                                Snackbar.make(contentTextView, initLogs, Snackbar.LENGTH_SHORT);
+////                        initSnackbar.show();
+////                    }
+//                    qaClient.loadDictionary();
+//                });
+
+        Toast.makeText(ContextActivity.this, modelUsed, Toast.LENGTH_SHORT).show();
+        String initLogs = qaClient.loadModel(modelUsed);
+        Toast.makeText(ContextActivity.this, initLogs, Toast.LENGTH_SHORT).show();
 
 //                    if(!initLogs.isEmpty()) {
 //                        Snackbar initSnackbar =
 //                                Snackbar.make(contentTextView, initLogs, Snackbar.LENGTH_SHORT);
 //                        initSnackbar.show();
 //                    }
-                    qaClient.loadDictionary();
-                });
+        qaClient.loadDictionary();
 
 //        textToSpeech =
 //                new TextToSpeech(

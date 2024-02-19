@@ -101,10 +101,10 @@ public class  QaClient {
 
   @WorkerThread
   public synchronized String loadModel(String dlc_model) {
-    String uiLogger = "";
+    String uiLogger = "hi how are you";
     try {
       // query runtimes & init SNPE
-      if (doSnpeInit) {
+      if (true || doSnpeInit) {
         String nativeDirPath = context.getApplicationInfo().nativeLibraryDir;
 
         uiLogger += queryRuntimes(nativeDirPath);
