@@ -101,21 +101,18 @@ public class  QaClient {
 
   @WorkerThread
   public synchronized String loadModel(String dlc_model) {
-    String uiLogger = "hi how are you";
+    String uiLogger = "";
     try {
-      // query runtimes & init SNPE
-      if (true || doSnpeInit) {
-        String nativeDirPath = context.getApplicationInfo().nativeLibraryDir;
+      String nativeDirPath = context.getApplicationInfo().nativeLibraryDir;
 
-        uiLogger += queryRuntimes(nativeDirPath);
+      uiLogger += queryRuntimes(nativeDirPath);
 
-        // init SNPE
-        assetManager = context.getAssets();
-        Log.i(TAG, "onCreate: Initializing SNPE ...");
-        uiLogger = initSNPE(assetManager, dlc_model);
+      // init SNPE
+      assetManager = context.getAssets();
+      Log.i(TAG, "onCreate: Initializing SNPE ...");
+      uiLogger = initSNPE(assetManager, dlc_model);
 
-        doSnpeInit = false;
-      }
+//      doSnpeInit = false;
     } catch (Exception ex) {
       Log.e(TAG, ex.getMessage());
       uiLogger += ex.getMessage();

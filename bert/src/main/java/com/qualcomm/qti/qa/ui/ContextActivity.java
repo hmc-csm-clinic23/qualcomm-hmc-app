@@ -94,20 +94,20 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
         modelUsed = DLCPaths[pos];
         qaClient = new QaClient(this);
 
-////        qaClient.unload();
-//        handler.post(
-//                ()-> {
-//                    String init_files = qaClient.loadModel(modelUsed);
+//        qaClient.unload();
+        handler.post(
+                ()-> {
+                    String init_files = qaClient.loadModel(modelUsed);
 //                    Toast.makeText(getApplicationContext(), init_files ,Toast.LENGTH_SHORT).show();
-//
-//                }
-//        );
-        String init_files = qaClient.loadModel(modelUsed);
-        Toast.makeText(getApplicationContext(), init_files ,Toast.LENGTH_SHORT).show();
-        qaClient.loadDictionary();
+                    qaClient.loadDictionary();
+
+                }
+        );
+//        String init_files = qaClient.loadModel(modelUsed);
+//        Toast.makeText(getApplicationContext(), init_files ,Toast.LENGTH_SHORT).show();
 
 
-        Toast.makeText(getApplicationContext(), "Selected DLC: "+modelUsed ,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), "Selected DLC: "+modelUsed ,Toast.LENGTH_SHORT).show();
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
@@ -116,44 +116,22 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
 
     @Override
     protected void onStart() {
-//        Log.v(TAG, "onStart");
         super.onStart();
-//        handler.post(
-//                () -> {
-//                    Toast.makeText(ContextActivity.this, modelUsed, Toast.LENGTH_SHORT).show();
-//                    String initLogs = qaClient.loadModel(modelUsed);
-//                    Toast.makeText(ContextActivity.this, initLogs, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(ContextActivity.this, modelUsed, Toast.LENGTH_SHORT).show();
+//        String initLogs = qaClient.loadModel(modelUsed);
+//        Toast.makeText(ContextActivity.this, initLogs, Toast.LENGTH_SHORT).show();
 //
-////                    if(!initLogs.isEmpty()) {
-////                        Snackbar initSnackbar =
-////                                Snackbar.make(contentTextView, initLogs, Snackbar.LENGTH_SHORT);
-////                        initSnackbar.show();
-////                    }
-//                    qaClient.loadDictionary();
-//                });
+//        qaClient.loadDictionary();
 
-        Toast.makeText(ContextActivity.this, modelUsed, Toast.LENGTH_SHORT).show();
-        String initLogs = qaClient.loadModel(modelUsed);
-        Toast.makeText(ContextActivity.this, initLogs, Toast.LENGTH_SHORT).show();
+        handler.post(
+                ()-> {
+                    String init_files = qaClient.loadModel(modelUsed);
+//                    Toast.makeText(getApplicationContext(), init_files ,Toast.LENGTH_SHORT).show();
+                    qaClient.loadDictionary();
 
-//                    if(!initLogs.isEmpty()) {
-//                        Snackbar initSnackbar =
-//                                Snackbar.make(contentTextView, initLogs, Snackbar.LENGTH_SHORT);
-//                        initSnackbar.show();
-//                    }
-        qaClient.loadDictionary();
+                }
+        );
 
-//        textToSpeech =
-//                new TextToSpeech(
-//                        this,
-//                        status -> {
-//                            if (status == TextToSpeech.SUCCESS) {
-//                                textToSpeech.setLanguage(Locale.US);
-//                            } else {
-//                                textToSpeech = null;
-//                            }
-//                        });
-//        Toast.makeText(ContextActivity.this, "initialized", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -161,11 +139,6 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
 //        Log.v(TAG, "onStop");
         super.onStop();
         handler.post(() -> qaClient.unload());
-//
-//        if (textToSpeech != null) {
-//            textToSpeech.stop();
-//            textToSpeech.shutdown();
-//        }
     }
 
     private void answerQuestion(String question, String context) {
