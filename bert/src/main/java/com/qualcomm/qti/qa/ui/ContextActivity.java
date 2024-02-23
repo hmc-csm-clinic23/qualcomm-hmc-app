@@ -150,7 +150,7 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
 
         handler.post(
                 () -> {
-                    String runtime= "CPU";
+                    String runtime= "DSP";
 
                     StringBuilder execStatus = new StringBuilder ();
 
