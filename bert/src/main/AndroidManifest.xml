@@ -28,20 +28,8 @@
 <!--                android:name="android.support.PARENT_ACTIVITY"-->
 <!--                android:value="com.qualcomm.qti.qa.ui.DatasetListActivity" />-->
 <!--        </activity>-->
-        <activity
-            android:name="com.qualcomm.qti.qa.ui.ContextActivity"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoTitleActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-
 <!--        <activity-->
-<!--            android:name="com.qualcomm.qti.qa.ui.ChatActivity"-->
+<!--            android:name="com.qualcomm.qti.qa.ui.ContextActivity"-->
 <!--            android:exported="true"-->
 <!--            android:theme="@style/AppTheme.NoTitleActivity">-->
 <!--            <intent-filter>-->
@@ -50,6 +38,17 @@
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
 <!--        </activity>-->
+
+        <activity
+            android:name="com.qualcomm.qti.qa.ui.ChatActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoTitleActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
