@@ -1,6 +1,8 @@
 package com.qualcomm.qti.qa.ui;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -22,11 +24,12 @@ import com.qualcomm.qti.R;
 
 import com.qualcomm.qti.qa.chat.MessageModel;
 import com.qualcomm.qti.qa.chat.MessageRVAdapter;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.qualcomm.qti.qa.ml.QaAnswer;
+import com.qualcomm.qti.qa.ml.QaClient;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -37,6 +40,14 @@ public class ChatActivity extends AppCompatActivity {
     private EditText userMsgEdt;
     private final String USER_KEY = "user";
     private final String BOT_KEY = "bot";
+
+    private Handler handler;
+    private QaClient qaClient;
+
+    private String modelUsed = "electra_small_squad2_cached.dlc";
+    private String previousContext = "";
+
+
 
     // creating a variable for
     // our volley request queue.
@@ -97,6 +108,30 @@ public class ChatActivity extends AppCompatActivity {
         // below line we are setting
         // adapter to our recycler view.
         chatsRV.setAdapter(messageRVAdapter);
+
+        HandlerThread handlerThread = new HandlerThread("QAClient");
+        handlerThread.start();
+        handler = new Handler(handlerThread.getLooper());
+        qaClient = new QaClient(this);
+    }
+
+    protected void onStart() {
+        super.onStart();
+        handler.post(
+                ()-> {
+                    String init_files = qaClient.loadModel(modelUsed);
+                    qaClient.loadDictionary();
+                    Toast.makeText(ChatActivity.this, init_files, Toast.LENGTH_SHORT).show();
+
+                }
+        );
+
+    }
+
+    protected void onStop() {
+//        Log.v(TAG, "onStop");
+        super.onStop();
+        handler.post(() -> qaClient.unload());
     }
 
     private void sendMessage(String userMsg) {
@@ -105,11 +140,61 @@ public class ChatActivity extends AppCompatActivity {
         messageModelArrayList.add(new MessageModel(userMsg, USER_KEY));
         messageRVAdapter.notifyDataSetChanged();
 
-        String botResponse = "figure this out";
-        messageModelArrayList.add(new MessageModel(botResponse, BOT_KEY));
+        String contextAdd = userMsg;
+        userMsg = userMsg.trim();
+        String botResponse;
+        if(previousContext.equals("")) {
+            Toast.makeText(ChatActivity.this, userMsg, Toast.LENGTH_SHORT).show();
+            previousContext = contextAdd;
+            botResponse = "Please give more information";
+            messageModelArrayList.add(new MessageModel(botResponse, BOT_KEY));
+        }else {
+            if (!userMsg.endsWith("?")) {
+                userMsg += '?';
+            }
+            final String questionToAsk = userMsg;
+            handler.removeCallbacksAndMessages(null);
+
+            handler.post(
+                    () -> {
+                        String runtime= "DSP";
+
+                        StringBuilder execStatus = new StringBuilder ();
+
+                        long beforeTime = System.currentTimeMillis();
+                        final List<QaAnswer> answers = qaClient.predict(questionToAsk, previousContext, runtime, execStatus);
+                        previousContext += contextAdd;
+
+                        long afterTime = System.currentTimeMillis();
+                        double totalSeconds = (afterTime - beforeTime) / 1000.0;
+                        String displayMessage = runtime + " inference took : ";
+                        displayMessage = String.format("%s %.3f sec. with %s", displayMessage, totalSeconds, modelUsed);
+                        Toast.makeText(ChatActivity.this, displayMessage, Toast.LENGTH_SHORT).show();
+
+                        if (!answers.isEmpty()) {
+
+                            QaAnswer topAnswer = answers.get(0);
+//                            botResponse = topAnswer.text;
+                            final String response = topAnswer.text;
+                            messageModelArrayList.add(new MessageModel(response, BOT_KEY));
+
+
+                        }else {
+                            Toast.makeText(ChatActivity.this, "Failed to get an answer", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+//            botResponse = response;
+
+
+        }
+
+//        messageModelArrayList.add(new MessageModel(botResponse, BOT_KEY));
 
         // notifying our adapter as data changed.
         messageRVAdapter.notifyDataSetChanged();
+
 
     }
 }
