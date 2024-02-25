@@ -148,6 +148,7 @@ public class ChatActivity extends AppCompatActivity {
             previousContext = contextAdd;
             botResponse = "Please give more information";
             messageModelArrayList.add(new MessageModel(botResponse, BOT_KEY));
+
         }else {
             if (!userMsg.endsWith("?")) {
                 userMsg += '?';
@@ -155,8 +156,8 @@ public class ChatActivity extends AppCompatActivity {
             final String questionToAsk = userMsg;
             handler.removeCallbacksAndMessages(null);
 
-            handler.post(
-                    () -> {
+//            handler.post(
+//                    () -> {
                         String runtime= "DSP";
 
                         StringBuilder execStatus = new StringBuilder ();
@@ -178,22 +179,28 @@ public class ChatActivity extends AppCompatActivity {
                             final String response = topAnswer.text;
                             messageModelArrayList.add(new MessageModel(response, BOT_KEY));
 
-
                         }else {
                             Toast.makeText(ChatActivity.this, "Failed to get an answer", Toast.LENGTH_SHORT).show();
 
                         }
-                    });
+//                    });
 
 //            botResponse = response;
 
 
         }
 
+
+        messageRVAdapter.notifyDataSetChanged();
+        Toast.makeText(ChatActivity.this, "exit", Toast.LENGTH_SHORT).show();
+
+
+
+
 //        messageModelArrayList.add(new MessageModel(botResponse, BOT_KEY));
 
         // notifying our adapter as data changed.
-        messageRVAdapter.notifyDataSetChanged();
+
 
 
     }
