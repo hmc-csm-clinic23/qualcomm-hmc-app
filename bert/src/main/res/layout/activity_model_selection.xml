@@ -4,11 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include
+        android:id="@+id/xml_toolbar"
+        layout="@layout/toolbar"></include>
+
+
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:prompt="@string/select_model" />
+        android:prompt="@string/select_model"
+        android:minHeight="48dp"/>
 
     <TextView
         android:id="@+id/model_info"

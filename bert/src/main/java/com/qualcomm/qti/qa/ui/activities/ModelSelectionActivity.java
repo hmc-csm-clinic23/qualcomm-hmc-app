@@ -1,5 +1,7 @@
 package com.qualcomm.qti.qa.ui.activities;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -7,15 +9,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.qualcomm.qti.qa.ui.Model;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
+
 import com.qualcomm.qti.R;
 
 public class ModelSelectionActivity extends AppCompatActivity{
     private Spinner spinner;
     private TextView modelInfoTextView;
+
+    private int currModelIndex;
 
     private List<Model> models;
 
@@ -26,6 +33,10 @@ public class ModelSelectionActivity extends AppCompatActivity{
 
         spinner = findViewById(R.id.spinner);
         modelInfoTextView = findViewById(R.id.model_info);
+
+        Toolbar toolBar = findViewById(R.id.xml_toolbar);
+        setSupportActionBar(toolBar);
+
 
         // Initialize your models
         initializeModels();
@@ -39,7 +50,8 @@ public class ModelSelectionActivity extends AppCompatActivity{
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                updateModelInfo(position);
+                currModelIndex = position;
+                updateModelInfo();
             }
 
             @Override
@@ -47,6 +59,14 @@ public class ModelSelectionActivity extends AppCompatActivity{
                 // Do nothing
             }
         });
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.top_menu, menu);
+        return true;
     }
 
     private void initializeModels() {
@@ -65,14 +85,14 @@ public class ModelSelectionActivity extends AppCompatActivity{
         return modelNames;
     }
 
-    private void updateModelInfo(int position) {
-        Model selectedModel = models.get(position);
+    private void updateModelInfo() {
+        Model selectedModel = models.get(currModelIndex);
         modelInfoTextView.setText(selectedModel.getInfo());
     }
 
     private void goToNextActivity(){
-
-        // go to next activity which should be chat bot.
+        Model selectedModel = models.get(currModelIndex);
+        // call next activity with the argument selectedModel
     }
 
 }
