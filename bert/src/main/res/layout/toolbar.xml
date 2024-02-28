@@ -4,10 +4,5 @@
     android:layout_height="wrap_content"
     android:background="@color/material_dynamic_primary70"
     android:elevation="8dp">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/textToolBar"/>
 
 </androidx.appcompat.widget.Toolbar>
