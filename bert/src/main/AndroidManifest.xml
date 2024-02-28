@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.qualcomm.qti">
+    package="com.qualcomm.qti" >
 
     <application
         android:allowBackup="true"
@@ -11,44 +11,50 @@
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning" >
+        <activity
+            android:name=".qa.ui.activities.ScrollThroughModelsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_scroll_through_models"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".qa.ui.activities.WelcomePage"
+            android:exported="false" />
+        <activity
+            android:name=".qa.ui.MainActivity"
+            android:exported="false" />
 
         <uses-native-library
             android:name="libcdsprpc.so"
             android:required="true" />
-
         <uses-native-library
             android:name="libOpenCL.so"
-            android:required="true" />
-
-<!--        <activity-->
-<!--            android:name="com.qualcomm.qti.qa.ui.QaActivity"-->
-<!--            android:exported="false">-->
-<!--            <meta-data-->
-<!--                android:name="android.support.PARENT_ACTIVITY"-->
-<!--                android:value="com.qualcomm.qti.qa.ui.DatasetListActivity" />-->
-<!--        </activity>-->
-<!--        <activity-->
-<!--            android:name="com.qualcomm.qti.qa.ui.DatasetListActivity"-->
-<!--            android:exported="true"-->
-<!--            android:theme="@style/AppTheme.NoTitleActivity">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
-
+            android:required="true" /> <!-- <activity -->
+        <!-- android:name="com.qualcomm.qti.qa.ui.QaActivity" -->
+        <!-- android:exported="false"> -->
+        <!-- <meta-data -->
+        <!-- android:name="android.support.PARENT_ACTIVITY" -->
+        <!-- android:value="com.qualcomm.qti.qa.ui.DatasetListActivity" /> -->
+        <!-- </activity> -->
+        <!-- <activity -->
+        <!-- android:name="com.qualcomm.qti.qa.ui.DatasetListActivity" -->
+        <!-- android:exported="true" -->
+        <!-- android:theme="@style/AppTheme.NoTitleActivity"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
         <activity
-            android:name="com.qualcomm.qti.qa.ui.LandingFragment"
+            android:name=".qa.ui.LandingFragment"
             android:exported="true"
-            tools:ignore="Instantiatable">
+            tools:ignore="Instantiatable" >
             <intent-filter>
                 <action android:name="com.qualcomm.qti.qa.ui.ACTION_NEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
