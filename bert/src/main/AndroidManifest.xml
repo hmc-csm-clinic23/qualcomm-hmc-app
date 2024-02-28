@@ -13,15 +13,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning" >
         <activity
-            android:name=".qa.ui.activities.ScrollThroughModelsActivity"
-            android:exported="false"
-            android:label="@string/title_activity_scroll_through_models"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".qa.ui.activities.WelcomePage"
-            android:exported="false" />
-        <activity
-            android:name=".qa.ui.MainActivity"
             android:exported="false" />
 
         <uses-native-library
