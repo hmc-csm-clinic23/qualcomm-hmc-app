@@ -6,4 +6,5 @@
     <dimen name="standard_margin">16dp</dimen>
     <dimen name="bottom_sheet_elevation">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="chat_bubble_padding">10dp</dimen>
 </resources>
