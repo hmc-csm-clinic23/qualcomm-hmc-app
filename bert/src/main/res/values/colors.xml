@@ -8,4 +8,8 @@
   <color name="secondaryDarkColor">#b8cc00</color>
   <color name="primaryTextColor">#ffffff</color>
   <color name="secondaryTextColor">#000000</color>
+  <color name="user_bubble_background">#2196F3</color> <!-- Blue -->
+  <color name="user_bubble_text">#FFFFFF</color> <!-- White -->
+  <color name="bot_bubble_background">#DDDDDD</color> <!-- Grey -->
+  <color name="bot_bubble_text">#000000</color> <!-- Black -->
 </resources>

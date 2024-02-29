@@ -1,4 +1,5 @@
 package com.qualcomm.qti.qa.ui.activities;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -90,9 +91,10 @@ public class ModelSelectionActivity extends AppCompatActivity{
         modelInfoTextView.setText(selectedModel.getInfo());
     }
 
-    private void goToNextActivity(){
-        Model selectedModel = models.get(currModelIndex);
-        // call next activity with the argument selectedModel
+    public void goToChatActivity(View view) {
+        Intent intent = new Intent(this, ChatActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 }

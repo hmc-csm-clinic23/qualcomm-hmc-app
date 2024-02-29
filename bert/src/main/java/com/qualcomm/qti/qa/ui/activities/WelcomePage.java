@@ -21,10 +21,10 @@ public class WelcomePage extends AppCompatActivity {
                     .commitNow();
         }
     }
-//    public void goToScrollingActivity(View view) {
-//        // Uncomment when finished
-//        Intent intent = new Intent(this, ScrollThroughModelsActivity.class);
-//        startActivity(intent);
-//        finish();
-//    }
+    public void goToScrollingActivity(View view) {
+        // Uncomment when finished
+        Intent intent = new Intent(this, ModelSelectionActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

@@ -23,4 +23,25 @@
         android:padding="16dp"
         android:text="Model Information" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Your other layout components -->
+
+        <Button
+            android:id="@+id/nextStepButton"
+            style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/material_dynamic_primary70"
+            android:clickable="true"
+            android:onClick="goToChatActivity"
+            android:text="Start"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="16dp"
+            android:textColor="@color/secondaryTextColor" />
+    </RelativeLayout>
+
 </LinearLayout>
