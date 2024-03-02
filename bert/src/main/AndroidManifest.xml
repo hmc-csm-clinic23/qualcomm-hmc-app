@@ -29,7 +29,7 @@
 <!--                android:value="com.qualcomm.qti.qa.ui.DatasetListActivity" />-->
 <!--        </activity>-->
 <!--        <activity-->
-<!--            android:name="com.qualcomm.qti.qa.ui.DatasetListActivity"-->
+<!--            android:name="com.qualcomm.qti.qa.ui.ContextActivity"-->
 <!--            android:exported="true"-->
 <!--            android:theme="@style/AppTheme.NoTitleActivity">-->
 <!--            <intent-filter>-->
@@ -40,7 +40,7 @@
 <!--        </activity>-->
 
         <activity
-            android:name="com.qualcomm.qti.qa.ui.LandingFragment"
+            android:name="com.qualcomm.qti.qa.ui.ChatActivity"
             android:exported="true"
             tools:ignore="Instantiatable">
             <intent-filter>

@@ -100,22 +100,19 @@ public class  QaClient {
   }
 
   @WorkerThread
-  public synchronized String loadModel() {
+  public synchronized String loadModel(String dlc_model) {
     String uiLogger = "";
     try {
-      // query runtimes & init SNPE
-      if (doSnpeInit) {
-        String nativeDirPath = context.getApplicationInfo().nativeLibraryDir;
+      String nativeDirPath = context.getApplicationInfo().nativeLibraryDir;
 
-        uiLogger += queryRuntimes(nativeDirPath);
+      uiLogger += queryRuntimes(nativeDirPath);
 
-        // init SNPE
-        assetManager = context.getAssets();
-        Log.i(TAG, "onCreate: Initializing SNPE ...");
-        uiLogger = initSNPE(assetManager);
+      // init SNPE
+      assetManager = context.getAssets();
+      Log.i(TAG, "onCreate: Initializing SNPE ...");
+      uiLogger = initSNPE(assetManager, dlc_model);
 
-        doSnpeInit = false;
-      }
+//      doSnpeInit = false;
     } catch (Exception ex) {
       Log.e(TAG, ex.getMessage());
       uiLogger += ex.getMessage();
@@ -293,7 +290,7 @@ public class  QaClient {
    * which is packaged with this application.
    */
   public native String queryRuntimes(String nativeDirPath);
-  public native String initSNPE(AssetManager assetManager);
+  public native String initSNPE(AssetManager assetManager, String dlc_name);
   public native String inferSNPE(String runtime, float[] input_ids,
                                  float[] attn_masks, float[] seg_ids,
                                  int arraySizes,

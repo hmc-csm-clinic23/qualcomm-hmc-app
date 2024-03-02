@@ -7,4 +7,8 @@
     <string name="you_might_want_to_ask" translatable="false">You might want to ask?</string>
     <string name="text_query" translatable="false">Text query</string>
     <string name="ask_question" translatable="false">Ask question</string>
+<!--    <string-array name="DLC_files">-->
+<!--        <item>Distilbert</item>-->
+<!--        <item>Electra_Small_Squad2</item>-->
+<!--    </string-array>-->
 </resources>
