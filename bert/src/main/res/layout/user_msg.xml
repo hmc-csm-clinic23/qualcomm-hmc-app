@@ -34,11 +34,12 @@ android:layout_marginTop="16dp">
                     android:layout_gravity="center_vertical"
                     android:layout_margin="5dp"
                     android:padding="3dp"
+                    android:maxWidth="200dp"
                     android:text="User message"></TextView>
                 <!--            android:textColor="@color/black" />-->
 
                 <!--        &lt;!&ndash;we are displaying user icon&ndash;&gt;-->
-                <!--        <ImageView-->
+                <!--        <ImageV iew-->
                 <!--            android:layout_width="50dp"-->
                 <!--            android:layout_height="50dp"-->
                 <!--            android:layout_margin="10dp"></ImageView>-->

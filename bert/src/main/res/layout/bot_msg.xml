@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="start"
     android:layout_margin="5dp"
+    app:cardBackgroundColor="@android:color/darker_gray"
     android:elevation="8dp"
     app:cardCornerRadius="8dp">
 
@@ -26,10 +27,12 @@
         <TextView
             android:id="@+id/idTVBot"
             android:layout_width="match_parent"
+            android:maxWidth="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_margin="5dp"
             android:padding="3dp"
+            android:textColor="@android:color/white"
             android:text="Bot message"></TextView>
 <!--            android:textColor="@color/black" />-->
 
