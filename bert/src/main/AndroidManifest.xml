@@ -26,22 +26,13 @@
             android:required="true" />
         <uses-native-library
             android:name="libOpenCL.so"
-            android:required="true" /> <!-- <activity -->
-        <!-- android:name="com.qualcomm.qti.qa.ui.QaActivity" -->
-        <!-- android:exported="false"> -->
-        <!-- <meta-data -->
-        <!-- android:name="android.support.PARENT_ACTIVITY" -->
-        <!-- android:value="com.qualcomm.qti.qa.ui.DatasetListActivity" /> -->
-        <!-- </activity> -->
-        <!-- <activity -->
-        <!-- android:name="com.qualcomm.qti.qa.ui.DatasetListActivity" -->
-        <!-- android:exported="true" -->
-        <!-- android:theme="@style/AppTheme.NoTitleActivity"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
+            android:required="true" />
+        <activity
+         android:name="com.qualcomm.qti.qa.ui.QaActivity"
+            android:exported="false">
+        <meta-data
+            android:value="com.qualcomm.qti.qa.ui.DatasetListActivity" />
+       </activity>
         <activity android:name=".qa.ui.activities.ModelSelectionActivity"
                   android:exported="true">
         </activity>
