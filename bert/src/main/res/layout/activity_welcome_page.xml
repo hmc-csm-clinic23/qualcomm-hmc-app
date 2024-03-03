@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:translationY="-30dp"
+    tools:context=".qa.ui.activities.WelcomePage">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Welcome to Friends"
+        android:textSize="32dp" />
+
+    <Button
+        android:id="@+id/WelcomeButton"
+        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+        android:layout_width="136dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/material_dynamic_primary70"
+        android:clickable="true"
+        android:gravity="center"
+        android:onClick="goToScrollingActivity"
+        android:text="Start"
+        android:textColor="@color/secondaryTextColor"
+        android:translationY="20dp" />
+</LinearLayout>
