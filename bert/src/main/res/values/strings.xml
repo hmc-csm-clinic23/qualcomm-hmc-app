@@ -98,6 +98,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
-    <string name="select_model">Please select a model.</string>
-    <string name="model_selection_activity">ModelSelectionActivity</string>
+    <string name="select_model">Select a model</string>
 </resources>
