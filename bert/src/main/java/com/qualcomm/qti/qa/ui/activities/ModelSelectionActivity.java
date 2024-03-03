@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.zip.Inflater;
 
 import com.qualcomm.qti.R;
+import com.qualcomm.qti.qa.ui.QaActivity;
 
 public class ModelSelectionActivity extends AppCompatActivity{
     private Spinner spinner;
@@ -93,7 +94,7 @@ public class ModelSelectionActivity extends AppCompatActivity{
     }
 
     public void goToChatActivity(View view) {
-        Intent intent = new Intent(this, ChatActivity.class);
+        Intent intent = new Intent(this, QaActivity.class);
         startActivity(intent);
         finish();
     }
