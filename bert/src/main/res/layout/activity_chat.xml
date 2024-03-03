@@ -1,50 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ChatPage"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context=".qa.ui.ChatActivity">
 
-    <include
-        android:id="@+id/xml_toolbar"
-        layout="@layout/toolbar"></include>
-
-    <ScrollView
+    <!--recycler view to display our chats-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idRVChats"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:contentDescription="Scroll through different models.">
-
-        <LinearLayout
-            android:id="@+id/chat_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Chat messages will be dynamically added here -->
-        </LinearLayout>
-    </ScrollView>
+        android:layout_height="match_parent"
+        android:layout_above="@id/idLLMessage" />
 
     <LinearLayout
+        android:id="@+id/idLLMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:weightSum="5">
 
+        <!--edit text to enter message-->
         <EditText
-            android:id="@+id/message_edit_text"
+            android:id="@+id/idEdtMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Type your message..."
-            android:inputType="text"
-            android:minHeight="50dp"/>
+            android:layout_weight="4"
+            android:hint="Enter Message" />
 
-        <Button
-            android:id="@+id/send_button"
-            android:layout_width="wrap_content"
+        <!--button to send message-->
+        <ImageButton
+            android:id="@+id/idIBSend"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Send"
-            android:backgroundTint="@color/material_dynamic_primary70"/>
+            android:layout_gravity="center_vertical"
+            android:src="@android:drawable/ic_menu_send"
+            android:layout_weight="1" />
+        <!--            android:background="@color/purple_200"-->
+        <!--            android:tint="@color/white" />-->
     </LinearLayout>
-</LinearLayout>
+
+</RelativeLayout>
