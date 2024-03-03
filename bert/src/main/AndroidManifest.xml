@@ -14,7 +14,12 @@
         tools:ignore="GoogleAppIndexingWarning" >
         <activity
             android:name=".qa.ui.activities.WelcomePage"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
         <uses-native-library
             android:name="libcdsprpc.so"
@@ -37,15 +42,11 @@
         <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
         <!-- </intent-filter> -->
         <!-- </activity> -->
-        <activity
-            android:name=".qa.ui.LandingFragment"
-            android:exported="true"
-            tools:ignore="Instantiatable" >
-            <intent-filter>
-                <action android:name="com.qualcomm.qti.qa.ui.ACTION_NEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+        <activity android:name=".qa.ui.activities.ModelSelectionActivity"
+                  android:exported="true">
+        </activity>
+        <activity android:name=".qa.ui.activities.ChatActivity"
+            android:exported="true">
         </activity>
     </application>
 

@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import com.qualcomm.qti.R;
@@ -26,6 +27,9 @@ public class ChatActivity extends AppCompatActivity {
         chatContainer = findViewById(R.id.chat_container);
         messageEditText = findViewById(R.id.message_edit_text);
         Button sendButton = findViewById(R.id.send_button);
+        Toolbar toolBar = findViewById(R.id.xml_toolbar);
+        TextView textView = toolBar.findViewById(R.id.textToolBar);
+        setSupportActionBar(toolBar);
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override

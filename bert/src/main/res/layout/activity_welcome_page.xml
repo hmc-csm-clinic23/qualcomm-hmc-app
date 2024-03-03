@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:translationY="250dp"
+    android:gravity="center"
+    android:translationY="-30dp"
     tools:context=".qa.ui.activities.WelcomePage">
 
     <TextView
@@ -24,9 +25,9 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/material_dynamic_primary70"
         android:clickable="true"
+        android:gravity="center"
         android:onClick="goToScrollingActivity"
         android:text="Start"
         android:textColor="@color/secondaryTextColor"
-        android:translationY="20dp"
-        android:translationX="135dp" />
+        android:translationY="20dp" />
 </LinearLayout>

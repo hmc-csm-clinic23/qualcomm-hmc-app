@@ -36,6 +36,7 @@ public class ModelSelectionActivity extends AppCompatActivity{
         modelInfoTextView = findViewById(R.id.model_info);
 
         Toolbar toolBar = findViewById(R.id.xml_toolbar);
+        TextView textView = toolBar.findViewById(R.id.textToolBar);
         setSupportActionBar(toolBar);
 
 
@@ -74,7 +75,7 @@ public class ModelSelectionActivity extends AppCompatActivity{
         // Initialize your models with names and information
         models = new ArrayList<>();
         models.add(new Model("Roberta", "Information about Model 1"));
-        models.add(new Model("", "Information about Model 2"));
+        models.add(new Model("Electra", "Information about Model 2"));
         // Add more models as needed
     }
 
