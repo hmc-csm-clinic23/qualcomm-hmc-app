@@ -16,8 +16,5 @@ public class Model {
     public String getInfo() {
         return info;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/joshAndNicBranch
+
