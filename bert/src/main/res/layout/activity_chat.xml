@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".qa.ui.activities.ChatActivity">
 
+    <include
+        android:id="@+id/xml_toolbar"
+        layout="@layout/toolbar"></include>
+
     <!--recycler view to display our chats-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRVChats"
