@@ -28,6 +28,7 @@
         android:gravity="center"
         android:onClick="goToScrollingActivity"
         android:text="Start"
+        android:textSize="20sp"
         android:textColor="@color/secondaryTextColor"
         android:translationY="20dp" />
 </LinearLayout>

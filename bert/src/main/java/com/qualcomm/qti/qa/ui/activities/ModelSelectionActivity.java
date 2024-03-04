@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -36,11 +37,6 @@ public class ModelSelectionActivity extends AppCompatActivity{
         spinner = findViewById(R.id.spinner);
         modelInfoTextView = findViewById(R.id.model_info);
 
-        Toolbar toolBar = findViewById(R.id.xml_toolbar);
-        TextView textView = toolBar.findViewById(R.id.textToolBar);
-        setSupportActionBar(toolBar);
-
-
         // Initialize your models
         initializeModels();
 
@@ -59,7 +55,7 @@ public class ModelSelectionActivity extends AppCompatActivity{
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // Do nothing
+                Toast.makeText(getApplicationContext(), "Please select a model", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -75,6 +71,7 @@ public class ModelSelectionActivity extends AppCompatActivity{
     private void initializeModels() {
         // Initialize your models with names and information
         models = new ArrayList<>();
+        models.add(new Model("Please select a model", ""));
         models.add(new Model("RoBERTA", "RoBERTa is a transformers model pretrained on a large corpus of English data in a self-supervised fashion. This means it was pretrained on the raw texts only, with no humans labelling them in any way (which is why it can use lots of publicly available data) with an automatic process to generate inputs and labels from those texts.\n" +
                 "\n" +
                 "More precisely, it was pretrained with the Masked language modeling (MLM) objective. Taking a sentence, the model randomly masks 15% of the words in the input then run the entire masked sentence through the model and has to predict the masked words. This is different from traditional recurrent neural networks (RNNs) that usually see the words one after the other, or from autoregressive models like GPT which internally mask the future tokens. It allows the model to learn a bidirectional representation of the sentence.\n" +

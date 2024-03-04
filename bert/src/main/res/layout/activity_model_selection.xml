@@ -4,9 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/xml_toolbar"
-        layout="@layout/toolbar"></include>
+<!--    <include-->
+<!--        android:id="@+id/xml_toolbar"-->
+<!--        layout="@layout/toolbar"></include>-->
 
 
     <Spinner
@@ -41,6 +41,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_margin="16dp"
+            android:textSize="12sp"
             android:textColor="@color/secondaryTextColor" />
     </RelativeLayout>
 

@@ -128,7 +128,6 @@ public class ChatActivity extends AppCompatActivity {
                     String init_files = qaClient.loadModel(modelUsed);
                     qaClient.loadDictionary();
                     Toast.makeText(ChatActivity.this, init_files, Toast.LENGTH_SHORT).show();
-
                 }
         );
 
