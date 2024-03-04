@@ -96,7 +96,7 @@ public class ModelSelectionActivity extends AppCompatActivity{
     }
 
     public void goToChatActivity(View view) {
-        Intent intent = new Intent(this, QaActivity.class);
+        Intent intent = new Intent(this, ChatActivity.class);
         startActivity(intent);
         finish();
     }
