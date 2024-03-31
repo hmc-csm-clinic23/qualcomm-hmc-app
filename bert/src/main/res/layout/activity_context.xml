@@ -5,57 +5,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/xml_toolbar"
+        layout="@layout/toolbar"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="126dp">
+    </include>
+
     <EditText
         android:id="@+id/contextText"
         android:layout_width="281dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="204dp"
         android:ems="10"
         android:hint="Context"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/questionText"
-        android:layout_width="274dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="90dp"
-        android:ems="10"
-        android:hint="Question"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contextText" />
+        <!-- Your other layout components -->
 
-    <Button
-        android:id="@+id/questionButton"
-        android:layout_width="274dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="70dp"
-        android:text="Submit Question"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionText" />
-
-    <TextView
-        android:id="@+id/answerView"
-        android:layout_width="275dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="40dp"
-        android:text="Answer:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionButton" />
+        <Button
+            android:id="@+id/nextStepButton"
+            style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/material_dynamic_primary70"
+            android:clickable="true"
+            android:text="Start"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="16dp"
+            android:textSize="12sp"
+            android:textColor="@color/secondaryTextColor" />
+    </RelativeLayout>
 
     <Spinner
         android:id="@+id/spinnerDLC"
         android:layout_width="273dp"
         android:layout_height="54dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="72dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/model_info"
+        android:layout_width="273dp"
+        android:layout_height="54dp"
+        android:padding="16dp"
+        android:gravity="center"
+        android:text="Model Information"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerDLC"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

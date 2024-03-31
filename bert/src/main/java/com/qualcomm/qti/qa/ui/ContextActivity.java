@@ -1,5 +1,6 @@
 package com.qualcomm.qti.qa.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -22,9 +23,10 @@ import com.google.android.material.snackbar.Snackbar;
 import com.qualcomm.qti.R;
 import com.qualcomm.qti.qa.ml.QaAnswer;
 import com.qualcomm.qti.qa.ml.QaClient;
+import com.qualcomm.qti.qa.ui.activities.ChatActivity;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class ContextActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     Button button;
@@ -45,18 +47,18 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
 
     String[] DLCPaths = {"electra_small_squad2_cached.dlc", "distilbert_cached.dlc"};
 
+    private List<Model> models;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_context);
 
-        button = (Button)findViewById(R.id.questionButton);
+        button = (Button)findViewById(R.id.nextStepButton);
         contextText = (EditText)findViewById(R.id.contextText);
-        questionText = (EditText)findViewById(R.id.questionText);
-        answerText = (TextView)findViewById(R.id.answerView);
         spinnerDLC = (Spinner)findViewById(R.id.spinnerDLC);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, DLCFiles);
+        initializeModels();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getModelNames());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDLC.setAdapter(adapter);
         spinnerDLC.setOnItemSelectedListener(this);
@@ -65,20 +67,35 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
             public void onClick(View view) {
                 if(contextText.getText().toString().trim().length() > 0 && questionText.getText().toString().trim().length() > 0) {
                     questionAnswered = false;
-                    answerQuestion(questionText.getText().toString().trim(), contextText.getText().toString().trim());
-                }else {
+                    String context = contextText.getText().toString().trim();
+                    goToChatActivity(context, modelUsed);
+                } else {
                     Toast.makeText(ContextActivity.this, "Put a question!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
 
-        // Setup QA client to and background thread to run inference.
-        HandlerThread handlerThread = new HandlerThread("QAClient");
-        handlerThread.start();
-        handler = new Handler(handlerThread.getLooper());
-        qaClient = new QaClient(this);
-        
+    private List<String> getModelNames() {
+        List<String> modelNames = new ArrayList<>();
+        for (Model model : models) {
+            modelNames.add(model.getName());
+        }
+        return modelNames;
+    }
 
+    private void initializeModels() {
+        // Initialize your models with names and information
+        models = new ArrayList<>();
+        models.add(new Model("Please select a model", ""));
+        models.add(new Model("RoBERTA", "RoBERTa is a transformers model pretrained on a large corpus of English data in a self-supervised fashion. This means it was pretrained on the raw texts only, with no humans labelling them in any way (which is why it can use lots of publicly available data) with an automatic process to generate inputs and labels from those texts.\n" +
+                "\n" +
+                "More precisely, it was pretrained with the Masked language modeling (MLM) objective. Taking a sentence, the model randomly masks 15% of the words in the input then run the entire masked sentence through the model and has to predict the masked words. This is different from traditional recurrent neural networks (RNNs) that usually see the words one after the other, or from autoregressive models like GPT which internally mask the future tokens. It allows the model to learn a bidirectional representation of the sentence.\n" +
+                "\n" +
+                "This way, the model learns an inner representation of the English language that can then be used to extract features useful for downstream tasks: if you have a dataset of labeled sentences for instance, you can train a standard classifier using the features produced by the BERT model as inputs."));
+        models.add(new Model("Electra", "The ELECTRA model was proposed in the paper ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators. ELECTRA is a new pretraining approach which trains two transformer models: the generator and the discriminator. The generator’s role is to replace tokens in a sequence, and is therefore trained as a masked language model. The discriminator, which is the model we’re interested in, tries to identify which tokens were replaced by the generator in the sequence.\n" +
+                "\n"));
+        // Add more models as needed
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
@@ -89,42 +106,50 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
 
         modelPos = pos;
         modelUsed = DLCPaths[pos];
-        qaClient = new QaClient(this);
+//        qaClient = new QaClient(this);
 
 //        qaClient.unload();
-        handler.post(
-                ()-> {
-                    String init_files = qaClient.loadModel(modelUsed);
-                    qaClient.loadDictionary();
-
-                }
-        );
+//        handler.post(
+//                ()-> {
+//                    String init_files = qaClient.loadModel(modelUsed);
+//                    qaClient.loadDictionary();
+//
+//                }
+//        );
 
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback.
     }
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//        handler.post(
+//                ()-> {
+//                    String init_files = qaClient.loadModel(modelUsed);
+//                    qaClient.loadDictionary();
+//
+//                }
+//        );
+//
+//    }
+//
+//    @Override
+//    protected void onStop() {
+////        Log.v(TAG, "onStop");
+//        super.onStop();
+//        handler.post(() -> qaClient.unload());
+//    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        handler.post(
-                ()-> {
-                    String init_files = qaClient.loadModel(modelUsed);
-                    qaClient.loadDictionary();
-
-                }
-        );
-
-    }
-
-    @Override
-    protected void onStop() {
-//        Log.v(TAG, "onStop");
-        super.onStop();
-        handler.post(() -> qaClient.unload());
+    public void goToChatActivity(String context, String modelUsed) {
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra("context", context);
+        intent.putExtra("modelUsed", modelUsed);
+        startActivity(intent);
+        finish();
     }
 
     private void answerQuestion(String question, String context) {
