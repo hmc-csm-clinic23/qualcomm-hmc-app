@@ -27,6 +27,9 @@ public class ModelSelectionActivity extends AppCompatActivity{
 
     private int currModelIndex;
 
+    String modelUsed = "electra_small_squad2_cached.dlc";
+    String[] DLCPaths = {"electra_small_squad2_cached.dlc", "distilbert_cached.dlc"};
+
     private List<Model> models;
 
     @Override
@@ -71,7 +74,6 @@ public class ModelSelectionActivity extends AppCompatActivity{
     private void initializeModels() {
         // Initialize your models with names and information
         models = new ArrayList<>();
-        models.add(new Model("Please select a model", ""));
         models.add(new Model("RoBERTA", "RoBERTa is a transformers model pretrained on a large corpus of English data in a self-supervised fashion. This means it was pretrained on the raw texts only, with no humans labelling them in any way (which is why it can use lots of publicly available data) with an automatic process to generate inputs and labels from those texts.\n" +
                 "\n" +
                 "More precisely, it was pretrained with the Masked language modeling (MLM) objective. Taking a sentence, the model randomly masks 15% of the words in the input then run the entire masked sentence through the model and has to predict the masked words. This is different from traditional recurrent neural networks (RNNs) that usually see the words one after the other, or from autoregressive models like GPT which internally mask the future tokens. It allows the model to learn a bidirectional representation of the sentence.\n" +
@@ -92,11 +94,13 @@ public class ModelSelectionActivity extends AppCompatActivity{
 
     private void updateModelInfo() {
         Model selectedModel = models.get(currModelIndex);
-        modelInfoTextView.setText(selectedModel.getInfo());
+        modelUsed = DLCPaths[currModelIndex];
+        modelInfoTextView.setText(modelUsed);
     }
 
     public void goToChatActivity(View view) {
         Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra("modelUsed", modelUsed);
         startActivity(intent);
         finish();
     }
