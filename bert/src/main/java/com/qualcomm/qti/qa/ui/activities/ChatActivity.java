@@ -46,7 +46,6 @@ public class ChatActivity extends AppCompatActivity {
     private QaClient qaClient;
 
     private  String modelUsed = "distilbert_cached.dlc";
-//    private String modelUsed = extras.getString("modelUsed");
     private String previousContext = "If someone finds themselves lost in the woods, it's essential to stay calm and focused to improve their chances of being found or finding their way out. Here are some crucial steps to take:Stop and Stay Put: As soon as you realize you're lost, stop walking. Continuing to move aimlessly can make it harder for rescuers to find you. Take a moment to assess your surroundings and gather your thoughts.Signal for Help: Use any available means to signal your location to potential rescuers. This could include blowing a whistle, shouting, or using a mirror or flashlight to reflect sunlight. Creating a signal fire can also attract attention. Stay Warm and Dry: If weather conditions are adverse, seek shelter to protect yourself from the elements. Use natural resources like branches, leaves, and rocks to build a makeshift shelter. Keep yourself warm and dry to prevent hypothermia. Stay Hydrated: Drink water regularly to stay hydrated, especially if you're exerting yourself or if it's hot outside. Avoid drinking from stagnant water sources, as they may contain harmful bacteria. Instead, try to find a flowing stream or collect rainwater.  Navigate with Caution: If you have a map and compass, use them to orient yourself and determine which direction to travel. However, if you're unfamiliar with navigation techniques, it's often best to stay put and wait for help.\n" +
             "\n" +
             "Use Trail Markers: Look for any signs of human activity or trail markers that could lead you back to a known path. Broken branches, footprints, or discarded items may indicate a nearby trail or road.Stay Positive and Patient: Remember that search and rescue teams are trained to locate lost individuals. Stay positive and patient, knowing that help is on the way. Use the time to conserve your energy and focus on staying safe.\n" +
@@ -178,7 +177,7 @@ public class ChatActivity extends AppCompatActivity {
                         long afterTime = System.currentTimeMillis();
                         double totalSeconds = (afterTime - beforeTime) / 1000.0;
                         String displayMessage = runtime + " inference took : ";
-                        displayMessage = String.format("%s %.3f sec. with %s", displayMessage, totalSeconds, modelUsed);
+                        displayMessage = String.format("%s %s %.3f sec. with %s", modelUsed, displayMessage, totalSeconds, modelUsed);
                         Toast.makeText(ChatActivity.this, displayMessage, Toast.LENGTH_SHORT).show();
 
                         if (!answers.isEmpty()) {
