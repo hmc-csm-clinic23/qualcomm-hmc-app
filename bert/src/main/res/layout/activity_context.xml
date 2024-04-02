@@ -26,15 +26,16 @@
         <Button
             android:id="@+id/nextStepButton"
             style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-            android:layout_width="80dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/material_dynamic_primary70"
             android:clickable="true"
-            android:text="Start"
+            android:text="Go to chat"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_margin="16dp"
             android:textSize="12sp"
+            android:onClick="goToChatActivity"
             android:textColor="@color/secondaryTextColor" />
     </RelativeLayout>
 

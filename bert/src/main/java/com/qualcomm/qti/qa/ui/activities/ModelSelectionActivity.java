@@ -94,13 +94,12 @@ public class ModelSelectionActivity extends AppCompatActivity{
 
     private void updateModelInfo() {
         Model selectedModel = models.get(currModelIndex);
-        modelUsed = DLCPaths[currModelIndex];
-        modelInfoTextView.setText(modelUsed);
+        modelInfoTextView.setText(selectedModel.getInfo());
     }
 
     public void goToChatActivity(View view) {
         Intent intent = new Intent(this, ChatActivity.class);
-        intent.putExtra("modelUsed", modelUsed);
+//        intent.putExtra("modelUsed", modelUsed);
         startActivity(intent);
         finish();
     }
