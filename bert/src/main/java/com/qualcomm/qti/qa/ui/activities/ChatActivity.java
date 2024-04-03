@@ -1,5 +1,7 @@
 package com.qualcomm.qti.qa.ui.activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -134,6 +136,16 @@ public class ChatActivity extends AppCompatActivity {
                 }
         );
 
+    }
+    @Override
+    public void onBackPressed() {
+        goToContextActivity();
+    }
+
+    private void goToContextActivity(){
+        Intent intent = new Intent(this, ContextActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     protected void onStop() {
