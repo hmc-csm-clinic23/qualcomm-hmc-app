@@ -84,6 +84,7 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
                 "This way, the model learns an inner representation of the English language that can then be used to extract features useful for downstream tasks: if you have a dataset of labeled sentences for instance, you can train a standard classifier using the features produced by the BERT model as inputs."));
         models.add(new Model("Electra", "The ELECTRA model was proposed in the paper ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators. ELECTRA is a new pretraining approach which trains two transformer models: the generator and the discriminator. The generator’s role is to replace tokens in a sequence, and is therefore trained as a masked language model. The discriminator, which is the model we’re interested in, tries to identify which tokens were replaced by the generator in the sequence.\n" +
                 "\n"));
+//        models.add(new Model("Testing Optimum CLI", "Testing it"));
         // Add more models as needed
     }
 

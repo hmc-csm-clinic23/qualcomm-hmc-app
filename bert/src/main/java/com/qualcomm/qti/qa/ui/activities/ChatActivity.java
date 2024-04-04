@@ -10,11 +10,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import android.speech.tts.TextToSpeech;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.qualcomm.qti.R;
+import java.util.Locale;
+
 
 
 //import com.android.volley.Request;
@@ -47,17 +51,11 @@ public class ChatActivity extends AppCompatActivity {
     private Handler handler;
     private QaClient qaClient;
 
-    private  String modelUsed = "distilbert_cached.dlc";
-    private String previousContext = "If someone finds themselves lost in the woods, it's essential to stay calm and focused to improve their chances of being found or finding their way out. Here are some crucial steps to take:Stop and Stay Put: As soon as you realize you're lost, stop walking. Continuing to move aimlessly can make it harder for rescuers to find you. Take a moment to assess your surroundings and gather your thoughts.Signal for Help: Use any available means to signal your location to potential rescuers. This could include blowing a whistle, shouting, or using a mirror or flashlight to reflect sunlight. Creating a signal fire can also attract attention. Stay Warm and Dry: If weather conditions are adverse, seek shelter to protect yourself from the elements. Use natural resources like branches, leaves, and rocks to build a makeshift shelter. Keep yourself warm and dry to prevent hypothermia. Stay Hydrated: Drink water regularly to stay hydrated, especially if you're exerting yourself or if it's hot outside. Avoid drinking from stagnant water sources, as they may contain harmful bacteria. Instead, try to find a flowing stream or collect rainwater.  Navigate with Caution: If you have a map and compass, use them to orient yourself and determine which direction to travel. However, if you're unfamiliar with navigation techniques, it's often best to stay put and wait for help.\n" +
-            "\n" +
-            "Use Trail Markers: Look for any signs of human activity or trail markers that could lead you back to a known path. Broken branches, footprints, or discarded items may indicate a nearby trail or road.Stay Positive and Patient: Remember that search and rescue teams are trained to locate lost individuals. Stay positive and patient, knowing that help is on the way. Use the time to conserve your energy and focus on staying safe.\n" +
-            "\n" +
-            "Stay Visible: Wear bright clothing if you have it, and avoid hiding in dense vegetation. Stay in an open area where you're more likely to be seen by search teams or passing hikers.\n" +
-            "\n" +
-            "Follow Water Sources: If you're near a river or stream, following it downstream can often lead to civilization. However, be cautious of steep terrain or other hazards along the way.\n" +
-            "\n" +
-            "Stay Rational: Avoid panicking or making impulsive decisions. Think through your actions carefully and prioritize your safety above all else.";
+    TextToSpeech textToSpeech;
 
+
+    private  String modelUsed = "distilbert_cached.dlc";
+    private String previousContext = "If someone finds themselves lost in the woods, it's essential to stay calm and focused to improve their chances of being found or finding their way out.  As soon as you realize you're lost, stop walking. Continuing to move aimlessly can make it harder for rescuers to find you. Take a moment to assess your surroundings and gather your thoughts. Use any available means to signal your location to potential rescuers. This could include blowing a whistle, shouting, or using a mirror or flashlight to reflect sunlight. Creating a signal fire can also attract attention.  If weather conditions are adverse, seek shelter to protect yourself from the elements. Use natural resources like branches, leaves, and rocks to build a makeshift shelter. Keep yourself warm and dry to prevent hypothermia. Drink water regularly to stay hydrated, especially if you're exerting yourself or if it's hot outside. Avoid drinking from stagnant water sources, as they may contain harmful bacteria. Instead, try to find a flowing stream or collect rainwater. If you have a map and compass, use them to orient yourself and determine which direction to travel. However, if you're unfamiliar with navigation techniques, it's often best to stay put and wait for help. Look for any signs of human activity or trail markers that could lead you back to a known path. Broken branches, footprints, or discarded items may indicate a nearby trail or road. Remember that search and rescue teams are trained to locate lost individuals. Stay positive and patient, knowing that help is on the way. Use the time to conserve your energy and focus on staying safe.  Wear bright clothing if you have it, and avoid hiding in dense vegetation. Stay in an open area where you're more likely to be seen by search teams or passing hikers. If you're near a river or stream, following it downstream can often lead to civilization. However, be cautious of steep terrain or other hazards along the way. Avoid panicking or making impulsive decisions. Think through your actions carefully and prioritize your safety above all else.";
 
     // creating a variable for
     // our volley request queue.
@@ -84,6 +82,18 @@ public class ChatActivity extends AppCompatActivity {
 
         // creating a new array list
         messageModelArrayList = new ArrayList<>();
+
+        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+
+                // if No error is found then only it will run
+                if(i!=TextToSpeech.ERROR){
+                    // To Choose language of speech
+                    textToSpeech.setLanguage(Locale.getDefault());
+                }
+            }
+        });
 
         // adding on click listener for send message button.
         sendMsgIB.setOnClickListener(new View.OnClickListener() {
@@ -157,13 +167,14 @@ public class ChatActivity extends AppCompatActivity {
     private void sendMessage(String userMsg) {
         // below line is to pass message to our
         // array list which is entered by the user.
+//        speak(userMsg);
         messageModelArrayList.add(new MessageModel(userMsg, USER_KEY));
         messageRVAdapter.notifyDataSetChanged();
 
         String contextAdd = userMsg;
         userMsg = userMsg.trim();
         String botResponse;
-        if(false && previousContext.equals("")) {
+        if(false) {
             Toast.makeText(ChatActivity.this, userMsg, Toast.LENGTH_SHORT).show();
             previousContext = contextAdd;
             botResponse = "Please give more information";
@@ -184,7 +195,7 @@ public class ChatActivity extends AppCompatActivity {
 
                         long beforeTime = System.currentTimeMillis();
                         final List<QaAnswer> answers = qaClient.predict(questionToAsk, previousContext, runtime, execStatus);
-                        previousContext += " " + contextAdd;
+//                        previousContext += " " + contextAdd;
 
                         long afterTime = System.currentTimeMillis();
                         double totalSeconds = (afterTime - beforeTime) / 1000.0;
@@ -197,10 +208,14 @@ public class ChatActivity extends AppCompatActivity {
                             QaAnswer topAnswer = answers.get(0);
 //                            botResponse = topAnswer.text;
                             final String response = topAnswer.text;
+                            speak(response);
                             messageModelArrayList.add(new MessageModel(response, BOT_KEY));
 
                         }else {
                             Toast.makeText(ChatActivity.this, "Failed to get an answer", Toast.LENGTH_SHORT).show();
+                            botResponse = "Please give more information";
+                            speak(botResponse);
+                            messageModelArrayList.add(new MessageModel(botResponse, BOT_KEY));
 
                         }
 //                    });
@@ -223,5 +238,9 @@ public class ChatActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void speak(String text) {
+        textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
     }
 }
