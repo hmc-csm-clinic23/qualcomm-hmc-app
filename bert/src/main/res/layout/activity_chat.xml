@@ -4,7 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".qa.ui.ChatActivity">
+    tools:context=".qa.ui.activities.ChatActivity">
+
+    <TextView
+        android:id="@+id/bannerTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="You are chatting with "
+        android:gravity="center"
+        android:padding="16dp"
+        android:background="@color/pink"
+        android:elevation="1dp"/>
+
 
     <!--recycler view to display our chats-->
     <androidx.recyclerview.widget.RecyclerView

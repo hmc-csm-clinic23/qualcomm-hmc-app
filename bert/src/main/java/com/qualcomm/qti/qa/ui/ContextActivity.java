@@ -115,6 +115,7 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
         Toast.makeText(ContextActivity.this, modelUsed, Toast.LENGTH_SHORT).show();
         intent.putExtra("modelUsed", modelUsed);
         intent.putExtra("modelPos", modelPos);
+        intent.putExtra("modelName", models.get(modelPos).getName());
         startActivity(intent);
         finish();
     }

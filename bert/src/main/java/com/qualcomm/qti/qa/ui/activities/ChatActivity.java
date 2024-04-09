@@ -8,6 +8,7 @@ import android.os.HandlerThread;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import android.speech.tts.TextToSpeech;
@@ -45,6 +46,8 @@ public class ChatActivity extends AppCompatActivity {
     private RecyclerView chatsRV;
     private ImageButton sendMsgIB;
     private EditText userMsgEdt;
+
+    private TextView bannerTextView;
     private final String USER_KEY = "user";
     private final String BOT_KEY = "bot";
 
@@ -97,6 +100,7 @@ public class ChatActivity extends AppCompatActivity {
     // creating a variable for array list and adapter class.
     private ArrayList<MessageModel> messageModelArrayList;
     private MessageRVAdapter messageRVAdapter;
+    private String modelName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,10 +111,13 @@ public class ChatActivity extends AppCompatActivity {
         chatsRV = findViewById(R.id.idRVChats);
         sendMsgIB = findViewById(R.id.idIBSend);
         userMsgEdt = findViewById(R.id.idEdtMessage);
+        bannerTextView = findViewById(R.id.bannerTextView);
 
         extras = getIntent().getExtras();
         modelUsed = extras.getString("modelUsed");
         context_no = extras.getInt("modelPos");
+        modelName = extras.getString("modelName");
+        bannerTextView.setText("You are chatting with " + modelName);
         // below line is to initialize our request queue.
 //        mRequestQueue = Volley.newRequestQueue(MainActivity.this);
 //        mRequestQueue.getCache().clear();
