@@ -34,10 +34,10 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
 
     private TextView modelInfoTextView;
 
-    String modelUsed = "distilbert_cached.dlc";
+    String modelUsed = "electra_small_squad2_cached.dlc";
     int modelPos = 0;
 
-    String[] DLCPaths = {"distilbert_cached.dlc", "electra_small_squad2_cached.dlc"};
+    String[] DLCPaths = {"electra_small_squad2_cached.dlc", "electra_small_squad2_cached.dlc",  "distilbert_cached.dlc",  "electra_small_squad2_cached.dlc", "electra_small_squad2_cached.dlc"};
 
     private List<Model> models;
 
@@ -77,12 +77,20 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
         // Initialize your models with names and information
         models = new ArrayList<Model>();
         // TODO: change the information tag for distilbert
-        models.add(new Model("Distilbert", "RoBERTa is a transformers model pretrained on a large corpus of English data in a self-supervised fashion. This means it was pretrained on the raw texts only, with no humans labelling them in any way (which is why it can use lots of publicly available data) with an automatic process to generate inputs and labels from those texts.\n" +
-                "\n" +
-                "More precisely, it was pretrained with the Masked language modeling (MLM) objective. Taking a sentence, the model randomly masks 15% of the words in the input then run the entire masked sentence through the model and has to predict the masked words. This is different from traditional recurrent neural networks (RNNs) that usually see the words one after the other, or from autoregressive models like GPT which internally mask the future tokens. It allows the model to learn a bidirectional representation of the sentence.\n" +
-                "\n" +
-                "This way, the model learns an inner representation of the English language that can then be used to extract features useful for downstream tasks: if you have a dataset of labeled sentences for instance, you can train a standard classifier using the features produced by the BERT model as inputs."));
-        models.add(new Model("Electra", "The ELECTRA model was proposed in the paper ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators. ELECTRA is a new pretraining approach which trains two transformer models: the generator and the discriminator. The generator’s role is to replace tokens in a sequence, and is therefore trained as a masked language model. The discriminator, which is the model we’re interested in, tries to identify which tokens were replaced by the generator in the sequence.\n" +
+        models.add(new Model("Henry the Hiking Helper", "Henry is here to help if you are ever lost in the woods while hiking. \n\n " +
+                "The ELECTRA model was proposed in the paper ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators. ELECTRA is a new pretraining approach which trains two transformer models: the generator and the discriminator. The generator’s role is to replace tokens in a sequence, and is therefore trained as a masked language model. The discriminator, which is the model we’re interested in, tries to identify which tokens were replaced by the generator in the sequence.\n" +
+                "\n"));
+        models.add(new Model("Ernie, the Earthquake Assistant", "Ernie is here to help if you ever find yourself trapped in an earthquake.\n\n" +
+                "The ELECTRA model was proposed in the paper ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators. ELECTRA is a new pretraining approach which trains two transformer models: the generator and the discriminator. The generator’s role is to replace tokens in a sequence, and is therefore trained as a masked language model. The discriminator, which is the model we’re interested in, tries to identify which tokens were replaced by the generator in the sequence.\n" +
+                "\n"));
+        models.add(new Model("Cornelius the Cook", "Cornelius is here to help you be safe in the kitchen.\n" +
+                "DistilBERT is a smaller, faster, and lighter version of the original BERT.\n" +
+                "\n"));
+        models.add(new Model("Fiona the First Aid Expert\n", "Fiona, your first aid expert, lets you know what should be in first aid kit and how to use it \n\n" +
+                "The ELECTRA model was proposed in the paper ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators. ELECTRA is a new pretraining approach which trains two transformer models: the generator and the discriminator. The generator’s role is to replace tokens in a sequence, and is therefore trained as a masked language model. The discriminator, which is the model we’re interested in, tries to identify which tokens were replaced by the generator in the sequence.\n" +
+                "\n"));
+        models.add(new Model("Serenity Sage", " Meet Serenity Sage, your calming companion for anxiety and panic relief. With gentle guidance in breathing exercises, mindfulness, and self-care, Serenity Sage helps you find peace and regain control during stressful moments. Always here to support you, no downtime needed.\n \n\n" +
+                "The ELECTRA model was proposed in the paper ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators. ELECTRA is a new pretraining approach which trains two transformer models: the generator and the discriminator. The generator’s role is to replace tokens in a sequence, and is therefore trained as a masked language model. The discriminator, which is the model we’re interested in, tries to identify which tokens were replaced by the generator in the sequence.\n" +
                 "\n"));
 //        models.add(new Model("Testing Optimum CLI", "Testing it"));
         // Add more models as needed
@@ -106,6 +114,7 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
         Intent intent = new Intent(this, ChatActivity.class);
         Toast.makeText(ContextActivity.this, modelUsed, Toast.LENGTH_SHORT).show();
         intent.putExtra("modelUsed", modelUsed);
+        intent.putExtra("modelPos", modelPos);
         startActivity(intent);
         finish();
     }
