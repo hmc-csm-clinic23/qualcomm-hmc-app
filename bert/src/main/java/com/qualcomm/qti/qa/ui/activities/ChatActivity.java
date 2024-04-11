@@ -2,6 +2,7 @@ package com.qualcomm.qti.qa.ui.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -102,6 +103,8 @@ public class ChatActivity extends AppCompatActivity {
     private MessageRVAdapter messageRVAdapter;
     private String modelName;
 
+    private String color;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,10 +117,14 @@ public class ChatActivity extends AppCompatActivity {
         bannerTextView = findViewById(R.id.bannerTextView);
 
         extras = getIntent().getExtras();
+        color = extras.getString("messageColor");
         modelUsed = extras.getString("modelUsed");
         context_no = extras.getInt("modelPos");
         modelName = extras.getString("modelName");
         bannerTextView.setText("You are chatting with " + modelName);
+        bannerTextView.setBackgroundColor(Color.parseColor(color));
+        Toast.makeText(ChatActivity.this, color, Toast.LENGTH_SHORT).show();
+
         // below line is to initialize our request queue.
 //        mRequestQueue = Volley.newRequestQueue(MainActivity.this);
 //        mRequestQueue.getCache().clear();
@@ -159,7 +166,8 @@ public class ChatActivity extends AppCompatActivity {
         });
 
         // on below line we are initializing our adapter class and passing our array list to it.
-        messageRVAdapter = new MessageRVAdapter(messageModelArrayList, this);
+        messageRVAdapter = new MessageRVAdapter(messageModelArrayList, this, color);
+//        messageRVAdapter.setColor(color);
 
         // below line we are creating a variable for our linear layout manager.
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ChatActivity.this, RecyclerView.VERTICAL, false);

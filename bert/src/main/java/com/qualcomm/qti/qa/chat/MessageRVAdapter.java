@@ -1,12 +1,14 @@
 package com.qualcomm.qti.qa.chat;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.qualcomm.qti.R;
@@ -19,11 +21,16 @@ public class MessageRVAdapter extends RecyclerView.Adapter {
     private ArrayList<MessageModel> messageModelArrayList;
     private Context context;
 
+    private String message_color;
+
     // constructor class.
-    public MessageRVAdapter(ArrayList<MessageModel> messageModelArrayList, Context context) {
+    public MessageRVAdapter(ArrayList<MessageModel> messageModelArrayList, Context context, String color) {
         this.messageModelArrayList = messageModelArrayList;
         this.context = context;
+        this.message_color = color;
     }
+
+
 
     @NonNull
     @Override
@@ -39,6 +46,9 @@ public class MessageRVAdapter extends RecyclerView.Adapter {
             case 1:
                 // below line we are inflating bot message layout.
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bot_msg, parent, false);
+//                view.setBackgroundColor(Color.parseColor("#FFFF00"));\
+                CardView cardView = view.findViewById(R.id.idCard);
+                cardView.setBackgroundColor(Color.parseColor(this.message_color));
                 return new BotViewHolder(view);
         }
         return null;
@@ -53,9 +63,10 @@ public class MessageRVAdapter extends RecyclerView.Adapter {
                 // below line is to set the text to our text view of user layout
                 ((UserViewHolder) holder).userTV.setText(modal.getMessage());
                 break;
-            case "bot":
-                // below line is to set the text to our text view of bot layout
+            case "bot":// below line is to set the text to our text view of bot layout
                 ((BotViewHolder) holder).botTV.setText(modal.getMessage());
+//                ((BotViewHolder) holder).botTV.setBackgroundColor(Color.parseColor("#FFFF00"));
+//                ((BotViewHolder) holder).botTV.setTextColor(Color.parseColor("#FF69B4"));
                 break;
         }
     }

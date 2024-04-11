@@ -39,6 +39,7 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
 
     String[] DLCPaths = {"electra_small_squad2_cached.dlc", "electra_small_squad2_cached.dlc",  "distilbert_cached.dlc",  "electra_small_squad2_cached.dlc", "electra_small_squad2_cached.dlc"};
 
+    String[] colors = {"#5FAD56", "#F2C14E", "#F78154", "#4D9078", "#E4959E", "#6D6A0", "#7EB2DD"};
     private List<Model> models;
 
     @Override
@@ -112,10 +113,12 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
 
     public void goToChatActivity(String modelUsed) {
         Intent intent = new Intent(this, ChatActivity.class);
+        Toast.makeText(ContextActivity.this, colors[modelPos], Toast.LENGTH_SHORT).show();
         Toast.makeText(ContextActivity.this, modelUsed, Toast.LENGTH_SHORT).show();
         intent.putExtra("modelUsed", modelUsed);
         intent.putExtra("modelPos", modelPos);
         intent.putExtra("modelName", models.get(modelPos).getName());
+        intent.putExtra("messageColor", colors[modelPos]);
         startActivity(intent);
         finish();
     }

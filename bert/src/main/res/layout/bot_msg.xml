@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="start"
     android:layout_margin="5dp"
+    android:id="@+id/idCard"
     app:cardBackgroundColor="@android:color/darker_gray"
     android:elevation="8dp"
     app:cardCornerRadius="8dp">
