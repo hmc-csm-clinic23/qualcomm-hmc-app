@@ -9,21 +9,23 @@
     <TextView
         android:id="@+id/bannerTextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="You are chatting with "
+        android:layout_height="93dp"
+        android:background="@color/pink"
+        android:elevation="1dp"
         android:gravity="center"
         android:padding="16dp"
-        android:background="@color/pink"
-        android:elevation="1dp"/>
+        android:text="You are chatting with "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
     <!--recycler view to display our chats-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRVChats"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/idLLMessage" />
+        android:layout_height="625dp"
+        android:layout_above="@id/idLLMessage"
+        android:layout_below="@+id/bannerTextView"
+        android:layout_marginTop="10px" />
 
     <LinearLayout
         android:id="@+id/idLLMessage"
