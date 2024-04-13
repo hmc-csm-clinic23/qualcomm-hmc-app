@@ -60,6 +60,9 @@ public class ChatActivity extends AppCompatActivity {
 
     private  String modelUsed = "distilbert_cached.dlc";
 
+    private ArrayList<String> previousQuestions;
+    int numQuestions = 3;
+
     private int context_no = 0;
     private String[] previousContext = {"If someone finds themselves lost in the woods, it's essential to stay calm and focused to improve their chances of being found or finding their way out.  As soon as you realize you're lost, stop walking. Continuing to move aimlessly can make it harder for rescuers to find you. Take a moment to assess your surroundings and gather your thoughts. Use any available means to signal your location to potential rescuers. This could include blowing a whistle, shouting, or using a mirror or flashlight to reflect sunlight. Creating a signal fire can also attract attention.  If weather conditions are adverse, seek shelter to protect yourself from the elements. Use natural resources like branches, leaves, and rocks to build a makeshift shelter. Keep yourself warm and dry to prevent hypothermia. Drink water regularly to stay hydrated, especially if you're exerting yourself or if it's hot outside. Avoid drinking from stagnant water sources, as they may contain harmful bacteria. Instead, try to find a flowing stream or collect rainwater. If you have a map and compass, use them to orient yourself and determine which direction to travel. However, if you're unfamiliar with navigation techniques, it's often best to stay put and wait for help. Look for any signs of human activity or trail markers that could lead you back to a known path. Broken branches, footprints, or discarded items may indicate a nearby trail or road. Remember that search and rescue teams are trained to locate lost individuals. Stay positive and patient, knowing that help is on the way. Use the time to conserve your energy and focus on staying safe.  Wear bright clothing if you have it, and avoid hiding in dense vegetation. Stay in an open area where you're more likely to be seen by search teams or passing hikers. If you're near a river or stream, following it downstream can often lead to civilization. However, be cautious of steep terrain or other hazards along the way. Avoid panicking or making impulsive decisions. Think through your actions carefully and prioritize your safety above all else.",
             "Dealing with an earthquake and its aftershocks requires preparedness, quick response, and safety awareness. Before an earthquake, secure heavy furniture and objects that could fall, and identify safe places in each room, such as under sturdy tables or against interior walls. During the quake, drop to the ground, take cover under something sturdy, and hold on until the shaking stops, avoiding doorways and windows. Once the initial quake ends, be prepared for aftershocks, which can be strong and cause additional damage. Stay away from damaged buildings and structures, as these can be further compromised by aftershocks. Keep emergency supplies, like water, food, and first aid kits, accessible, and plan evacuation routes in advance. After the shaking stops, check for injuries and hazards, such as gas leaks or electrical shorts, and use text messages or social media to communicate with family and emergency services to avoid overwhelming phone lines. Stay informed through official sources for updates and instructions on recovery efforts and potential further seismic activity.",
@@ -131,6 +134,8 @@ public class ChatActivity extends AppCompatActivity {
 
         // creating a new array list
         messageModelArrayList = new ArrayList<>();
+        previousQuestions = new ArrayList<>();
+        int held_questions = 3;
 
         textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
@@ -221,59 +226,63 @@ public class ChatActivity extends AppCompatActivity {
         messageModelArrayList.add(new MessageModel(userMsg, USER_KEY));
         messageRVAdapter.notifyDataSetChanged();
 
-        String contextAdd = userMsg;
         userMsg = userMsg.trim();
         String botResponse;
-        if(false) {
-            Toast.makeText(ChatActivity.this, userMsg, Toast.LENGTH_SHORT).show();
-            previousContext[context_no] = contextAdd;
-            botResponse = "Please give more information";
-            messageModelArrayList.add(new MessageModel(botResponse, BOT_KEY));
+//        final String questionToAsk = userMsg;
+        previousQuestions.add(userMsg);
+        if(previousQuestions.size() > numQuestions) {
+            previousQuestions.remove(0);
+        }
+        String combinedQuestions = "";
+        for (int i = 0; i < previousQuestions.size(); i++) {
+            combinedQuestions = combinedQuestions + previousQuestions.get(i) + " ";
+        }
 
-        }else {
-            if (!userMsg.endsWith("?")) {
-                userMsg += '?';
-            }
-            final String questionToAsk = userMsg;
-            handler.removeCallbacksAndMessages(null);
+        if (!combinedQuestions.endsWith("?")) {
+            combinedQuestions += '?';
+        }
+
+        final String questionToAsk = combinedQuestions;
+        Toast.makeText(ChatActivity.this, questionToAsk, Toast.LENGTH_SHORT).show();
+
+
+
+        handler.removeCallbacksAndMessages(null);
 
 //            handler.post(
 //                    () -> {
-                        String runtime= "DSP";
+                    String runtime= "DSP";
 
-                        StringBuilder execStatus = new StringBuilder ();
+                    StringBuilder execStatus = new StringBuilder ();
 
-                        long beforeTime = System.currentTimeMillis();
-                        final List<QaAnswer> answers = qaClient.predict(questionToAsk, previousContext[context_no], runtime, execStatus);
+                    long beforeTime = System.currentTimeMillis();
+                    final List<QaAnswer> answers = qaClient.predict(questionToAsk, previousContext[context_no], runtime, execStatus);
 //                        previousContext += " " + contextAdd;
 
-                        long afterTime = System.currentTimeMillis();
-                        double totalSeconds = (afterTime - beforeTime) / 1000.0;
-                        String displayMessage = runtime + " inference took : ";
-                        displayMessage = String.format("%s %s %.3f sec. with %s", modelUsed, displayMessage, totalSeconds, modelUsed);
-                        Toast.makeText(ChatActivity.this, displayMessage, Toast.LENGTH_SHORT).show();
+                    long afterTime = System.currentTimeMillis();
+                    double totalSeconds = (afterTime - beforeTime) / 1000.0;
+                    String displayMessage = runtime + " inference took : ";
+                    displayMessage = String.format("%s %s %.3f sec. with %s", modelUsed, displayMessage, totalSeconds, modelUsed);
+                    Toast.makeText(ChatActivity.this, displayMessage, Toast.LENGTH_SHORT).show();
 
-                        if (!answers.isEmpty()) {
+                    if (!answers.isEmpty()) {
 
-                            QaAnswer topAnswer = answers.get(0);
+                        QaAnswer topAnswer = answers.get(0);
 //                            botResponse = topAnswer.text;
-                            final String response = topAnswer.text;
-                            speak(response);
-                            messageModelArrayList.add(new MessageModel(response, BOT_KEY));
+                        final String response = topAnswer.text;
+                        speak(response);
+                        messageModelArrayList.add(new MessageModel(response, BOT_KEY));
 
-                        }else {
-                            Toast.makeText(ChatActivity.this, "Failed to get an answer", Toast.LENGTH_SHORT).show();
-                            botResponse = "Please give more information";
-                            speak(botResponse);
-                            messageModelArrayList.add(new MessageModel(botResponse, BOT_KEY));
+                    }else {
+                        Toast.makeText(ChatActivity.this, "Failed to get an answer", Toast.LENGTH_SHORT).show();
+                        botResponse = "Please give more information";
+                        speak(botResponse);
+                        messageModelArrayList.add(new MessageModel(botResponse, BOT_KEY));
 
-                        }
+                    }
 //                    });
 
 //            botResponse = response;
-
-
-        }
 
 
         messageRVAdapter.notifyDataSetChanged();
