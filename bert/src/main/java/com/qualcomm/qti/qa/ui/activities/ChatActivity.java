@@ -1,6 +1,5 @@
 package com.qualcomm.qti.qa.ui.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,20 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.qualcomm.qti.R;
 import java.util.Locale;
 
-
-
-//import com.android.volley.Request;
-//import com.android.volley.RequestQueue;
-//import com.android.volley.Response;
-//import com.android.volley.VolleyError;
-//import com.android.volley.toolbox.JsonObjectRequest;
-//import com.android.volley.toolbox.Volley;
-
 import com.qualcomm.qti.qa.chat.MessageModel;
 import com.qualcomm.qti.qa.chat.MessageRVAdapter;
 import com.qualcomm.qti.qa.ml.QaAnswer;
 import com.qualcomm.qti.qa.ml.QaClient;
-import com.qualcomm.qti.qa.ui.ContextActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -126,11 +115,6 @@ public class ChatActivity extends AppCompatActivity {
         modelName = extras.getString("modelName");
         bannerTextView.setText("You are chatting with " + modelName);
         bannerTextView.setBackgroundColor(Color.parseColor(color));
-        Toast.makeText(ChatActivity.this, color, Toast.LENGTH_SHORT).show();
-
-        // below line is to initialize our request queue.
-//        mRequestQueue = Volley.newRequestQueue(MainActivity.this);
-//        mRequestQueue.getCache().clear();
 
         // creating a new array list
         messageModelArrayList = new ArrayList<>();
@@ -172,7 +156,6 @@ public class ChatActivity extends AppCompatActivity {
 
         // on below line we are initializing our adapter class and passing our array list to it.
         messageRVAdapter = new MessageRVAdapter(messageModelArrayList, this, color);
-//        messageRVAdapter.setColor(color);
 
         // below line we are creating a variable for our linear layout manager.
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ChatActivity.this, RecyclerView.VERTICAL, false);
@@ -185,6 +168,7 @@ public class ChatActivity extends AppCompatActivity {
         // adapter to our recycler view.
         chatsRV.setAdapter(messageRVAdapter);
 
+        // creation of handler thread to run QAClient (inference)
         HandlerThread handlerThread = new HandlerThread("QAClient");
         handlerThread.start();
         handler = new Handler(handlerThread.getLooper());
@@ -222,7 +206,6 @@ public class ChatActivity extends AppCompatActivity {
     private void sendMessage(String userMsg) {
         // below line is to pass message to our
         // array list which is entered by the user.
-//        speak(userMsg);
         messageModelArrayList.add(new MessageModel(userMsg, USER_KEY));
         messageRVAdapter.notifyDataSetChanged();
 
@@ -243,60 +226,34 @@ public class ChatActivity extends AppCompatActivity {
         }
 
         final String questionToAsk = combinedQuestions;
-        Toast.makeText(ChatActivity.this, questionToAsk, Toast.LENGTH_SHORT).show();
-
-
-
         handler.removeCallbacksAndMessages(null);
+        String runtime= "DSP";
 
-//            handler.post(
-//                    () -> {
-                    String runtime= "DSP";
+        StringBuilder execStatus = new StringBuilder ();
 
-                    StringBuilder execStatus = new StringBuilder ();
+        long beforeTime = System.currentTimeMillis();
+        final List<QaAnswer> answers = qaClient.predict(questionToAsk, previousContext[context_no], runtime, execStatus);
 
-                    long beforeTime = System.currentTimeMillis();
-                    final List<QaAnswer> answers = qaClient.predict(questionToAsk, previousContext[context_no], runtime, execStatus);
-//                        previousContext += " " + contextAdd;
+        long afterTime = System.currentTimeMillis();
+        double totalSeconds = (afterTime - beforeTime) / 1000.0;
+        String displayMessage = runtime + " inference took : ";
+        displayMessage = String.format("%s %s %.3f sec. with %s", modelUsed, displayMessage, totalSeconds, modelUsed);
+        Toast.makeText(ChatActivity.this, displayMessage, Toast.LENGTH_SHORT).show();
 
-                    long afterTime = System.currentTimeMillis();
-                    double totalSeconds = (afterTime - beforeTime) / 1000.0;
-                    String displayMessage = runtime + " inference took : ";
-                    displayMessage = String.format("%s %s %.3f sec. with %s", modelUsed, displayMessage, totalSeconds, modelUsed);
-                    Toast.makeText(ChatActivity.this, displayMessage, Toast.LENGTH_SHORT).show();
+        if (!answers.isEmpty()) {
 
-                    if (!answers.isEmpty()) {
-
-                        QaAnswer topAnswer = answers.get(0);
-//                            botResponse = topAnswer.text;
-                        final String response = topAnswer.text;
-                        speak(response);
-                        messageModelArrayList.add(new MessageModel(response, BOT_KEY));
-
-                    }else {
-                        Toast.makeText(ChatActivity.this, "Failed to get an answer", Toast.LENGTH_SHORT).show();
-                        botResponse = "Please give more information";
-                        speak(botResponse);
-                        messageModelArrayList.add(new MessageModel(botResponse, BOT_KEY));
-
-                    }
-//                    });
-
-//            botResponse = response;
-
+            QaAnswer topAnswer = answers.get(0);
+            final String response = topAnswer.text;
+            speak(response);
+            messageModelArrayList.add(new MessageModel(response, BOT_KEY));
+        } else {
+            Toast.makeText(ChatActivity.this, "Failed to get an answer", Toast.LENGTH_SHORT).show();
+            botResponse = "Please give more information";
+            speak(botResponse);
+            messageModelArrayList.add(new MessageModel(botResponse, BOT_KEY));
+        }
 
         messageRVAdapter.notifyDataSetChanged();
-//        Toast.makeText(ChatActivity.this, "exit", Toast.LENGTH_SHORT).show();
-
-
-
-
-//        messageModelArrayList.add(new MessageModel(botResponse, BOT_KEY));
-
-        // notifying our adapter as data changed.
-
-
-
     }
 
     private void speak(String text) {

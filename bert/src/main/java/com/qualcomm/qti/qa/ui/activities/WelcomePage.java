@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.qualcomm.qti.R;
-import com.qualcomm.qti.qa.ui.ContextActivity;
 
 public class WelcomePage extends AppCompatActivity {
 
@@ -17,7 +16,6 @@ public class WelcomePage extends AppCompatActivity {
         setContentView(R.layout.activity_welcome_page);
     }
     public void goToScrollingActivity(View view) {
-        // Uncomment when finished
         Intent intent = new Intent(this, ContextActivity.class);
         startActivity(intent);
         finish();

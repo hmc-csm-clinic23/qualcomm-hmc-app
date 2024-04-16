@@ -4,10 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-<!--    <include-->
-<!--        android:id="@+id/xml_toolbar"-->
-<!--        layout="@layout/toolbar"></include>-->
-
     <Spinner
         android:id="@+id/spinnerDLC"
         android:layout_width="273dp"

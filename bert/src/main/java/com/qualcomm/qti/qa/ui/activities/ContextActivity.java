@@ -1,29 +1,19 @@
-package com.qualcomm.qti.qa.ui;
+package com.qualcomm.qti.qa.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.speech.tts.TextToSpeech;
-import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.qualcomm.qti.R;
-import com.qualcomm.qti.qa.ml.QaAnswer;
-import com.qualcomm.qti.qa.ml.QaClient;
-import com.qualcomm.qti.qa.ui.activities.ChatActivity;
+import com.qualcomm.qti.qa.ui.Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +67,6 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
     private void initializeModels() {
         // Initialize your models with names and information
         models = new ArrayList<Model>();
-        // TODO: change the information tag for distilbert
         models.add(new Model("Henry the Hiking Helper", "Henry is here to help if you are ever lost in the woods while hiking. \n\n " +
                 "The ELECTRA model was proposed in the paper ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators. ELECTRA is a new pretraining approach which trains two transformer models: the generator and the discriminator. The generator’s role is to replace tokens in a sequence, and is therefore trained as a masked language model. The discriminator, which is the model we’re interested in, tries to identify which tokens were replaced by the generator in the sequence.\n" +
                 "\n"));
@@ -93,7 +82,6 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
         models.add(new Model("Serenity Sage", " Meet Serenity Sage, your calming companion for anxiety and panic relief. With gentle guidance in breathing exercises, mindfulness, and self-care, Serenity Sage helps you find peace and regain control during stressful moments. Always here to support you, no downtime needed.\n \n\n" +
                 "The ELECTRA model was proposed in the paper ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators. ELECTRA is a new pretraining approach which trains two transformer models: the generator and the discriminator. The generator’s role is to replace tokens in a sequence, and is therefore trained as a masked language model. The discriminator, which is the model we’re interested in, tries to identify which tokens were replaced by the generator in the sequence.\n" +
                 "\n"));
-//        models.add(new Model("Testing Optimum CLI", "Testing it"));
         // Add more models as needed
     }
 
@@ -113,8 +101,7 @@ public class ContextActivity extends AppCompatActivity implements AdapterView.On
 
     public void goToChatActivity(String modelUsed) {
         Intent intent = new Intent(this, ChatActivity.class);
-        Toast.makeText(ContextActivity.this, colors[modelPos], Toast.LENGTH_SHORT).show();
-        Toast.makeText(ContextActivity.this, modelUsed, Toast.LENGTH_SHORT).show();
+        // addition of information for running the model in chat activity.
         intent.putExtra("modelUsed", modelUsed);
         intent.putExtra("modelPos", modelPos);
         intent.putExtra("modelName", models.get(modelPos).getName());

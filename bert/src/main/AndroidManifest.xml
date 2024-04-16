@@ -32,7 +32,7 @@
         <uses-native-library
             android:name="libOpenCL.so"
             android:required="true" />
-        <activity android:name=".qa.ui.ContextActivity"
+        <activity android:name=".qa.ui.activities.ContextActivity"
                   android:exported="true">
         </activity>
         <activity android:name=".qa.ui.activities.ChatActivity"

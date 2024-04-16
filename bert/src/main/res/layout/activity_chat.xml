@@ -51,8 +51,6 @@
             android:layout_gravity="center_vertical"
             android:src="@android:drawable/ic_menu_send"
             android:layout_weight="1" />
-        <!--            android:background="@color/purple_200"-->
-        <!--            android:tint="@color/white" />-->
     </LinearLayout>
 
 </RelativeLayout>
