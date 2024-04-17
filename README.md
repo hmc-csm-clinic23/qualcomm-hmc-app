@@ -1,4 +1,19 @@
-Change the Android Manifest to 
+## Files to Add
+Models 
+* bert/src/main/assets/distilbert1_optimum_cached.dlc
+* bert/src/main/assets/distilbert_cached.dlc
+* bert/src/main/assets/electra_small_squad2_cached.dlc
+  
+Library Files
+* bert/src/main/cmakeLibs/arm64-v8a/libSNPE.so
+* bert/src/main/jniLibs/arm64-v8a/libSNPE.so
+* bert/src/main/jniLibs/arm64-v8a/libSnpeHtpPrepare.so
+* bert/src/main/jniLibs/arm64-v8a/libSnpeHtpV69Skel.so
+* bert/src/main/jniLibs/arm64-v8a/libSnpeHtpV69Stub.so
+* bert/src/main/jniLibs/arm64-v8a/libSnpeHtpV73Skel.so
+* bert/src/main/jniLibs/arm64-v8a/libSnpeHtpV73Stub.so
+* bert/src/main/jniLibs/arm64-v8a/libc++_shared.so
+
 
 ## Chatting App
 bert/java/com.qualcomm.qti.qa/chat have 2 files
