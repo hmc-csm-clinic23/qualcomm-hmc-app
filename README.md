@@ -33,8 +33,8 @@ The model selection activity's code is found at `bert/src/main/java/com/qualcomm
 ## Chat Bot Activity
 The `bert/src/main/java/com/qualcomm/qti/qa/ui/activities/ChatActivity.java` file holds the code for interacting with the different model personalities that are included in the app. This activity supports the communication between the chatbot and user by loading the model in the backend with the written context that was passed in from `ContextActivity.java` when transitioning between activities when starting the activity, actively uses the langauge model to generate responses after they have been posted by the user, and updates the UI so users can see their messages and the bots messages. The UI is updated according to the related `bert/src/main/res/layout/activity_chat.xml` which can also be updated and modified for UI updates.
 
-`bert/java/com.qualcomm.qti.qa/ui/ `:
-* The before described activities can be found in the activities directory.
+`bert/java/com.qualcomm.qti.qa/ui `:
+* The before described activities can be found in the `activities` directory.
 * Model.java is the class container that stores information about each model.
 
 `bert/src/main/java/com/qualcomm/qti/qa/ml`:
