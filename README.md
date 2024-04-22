@@ -28,27 +28,24 @@ We also recommend caching your models after converting your models to a DLC file
 The `bert/src/main/java/com/qualcomm/qti/qa/ui/activities/WelcomePage.java` file holds the code for the initial welcome page of the app. Right now this is simply a button to transition to the `ContextActivity.java` file. The UI is dictated by `bert/src/main/res/layout/activity_welcome_page.xml`.
 
 ## Model Selection Activity
-The model selection activity's code is found at `bert/src/main/java/com/qualcomm/qti/qa/ui/activities/ContextActivity.java`. The code in this file dictates how the model selection is loaded, creating a drop down element which gives different model personality names (e.g. Eric the Earthquake Helper) which upon selection, loads information about the chat bot assistant as well as the underlying model that is used to power such a personality (e.g. ElectraSmall) and stores the currently selected model name and path, the context used to generate said model personality, as well as an associated color with said personality in order to update the UI on the chat bot page.
+The model selection activity's code is found at `bert/src/main/java/com/qualcomm/qti/qa/ui/activities/ContextActivity.java`. The code in this file dictates how the model selection is loaded, creating a drop down element which gives different model personality names (e.g. Eric the Earthquake Helper) which upon selection, loads information about the chat bot assistant as well as the underlying model that is used in such a personality (e.g. ElectraSmall) and stores the currently selected model name and path, the context used to generate said model personality, as well as an associated color with said personality in order to update the UI on the chat bot page. The file that handles the UI for this page is found at `bert/src/main/res/layout/activity_context.xml`. Users will select their model using the drop down, then click the button in the bottom right corner that says "Go to chat" to proceed to the chat bot activity.
 
 ## Chat Bot Activity
 The `bert/src/main/java/com/qualcomm/qti/qa/ui/activities/ChatActivity.java` file holds the code for interacting with the different model personalities that are included in the app. This activity supports the communication between the chatbot and user by loading the model in the backend with the written context that was passed in from `ContextActivity.java` when transitioning between activities when starting the activity, actively uses the langauge model to generate responses after they have been posted by the user, and updates the UI so users can see their messages and the bots messages. The UI is updated according to the related `bert/src/main/res/layout/activity_chat.xml` which can also be updated and modified for UI updates.
 
-bert/java/com.qualcomm.qti.qa/ui 
-* ChatActivity has the activity that controlles the UI for the Chatting App
-* QaClient is called for the inferences
+`bert/java/com.qualcomm.qti.qa/ui/ `:
+* The before described activities can be found in the activities directory.
+* Model.java is the class container that stores information about each model.
 
-bert/res/layout
-* activity_chat.xml has the ui for the chatting app
-* bot_msg.xml is the ui for the bot message
-* user_msg.xml is the ui for the user message
+`bert/src/main/java/com/qualcomm/qti/qa/ml`:
+* QaClient is called for inferences. Developers can modify what piece of hardware (e.g. DSP) inference is run on through their QaClient instances (see `ChatActivity` file for examples of usage).
 
-## Switch DLCs App
-bert/java/com.qualcomm.qti.qa/ui 
-* ContextActivity has the activity that controlls the switch between DLCS and allows for a context and a question
-  
-bert/res/layout
-* activity_context.xml has the UI for the context Activity
- * Modify both to add a new DLC 
-  * DLCFiles contains the names of the Models
-  * DLCPaths  are the paths to the Models
+`bert/res/layout`
+* activity_chat.xml has the UI for the chatting app.
+* bot_msg.xml is the UI for the bot message.
+* user_msg.xml is the UI for the user message.
+* activity_welcome_page.xml is the UI for the welcome page.
+* activity_context.xml is the UI for the model selection page.
+* activity_chat.xml is the UI for the chat bot page.
+* toolbar.xml is the UI for the "Friends" banner at the top of the pages.
 
