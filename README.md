@@ -49,3 +49,5 @@ The `bert/src/main/java/com/qualcomm/qti/qa/ui/activities/ChatActivity.java` fil
 * activity_chat.xml is the UI for the chat bot page.
 * toolbar.xml is the UI for the "Friends" banner at the top of the pages.
 
+This repository is built off of the [Qualcomm NLP Solution 1](https://github.com/quic/qidk/tree/master/Solutions/NLPSolution1-QuestionAnswering) from QIDK github.
+
